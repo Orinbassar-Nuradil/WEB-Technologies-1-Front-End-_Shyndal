@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ШыңдАл орталығына онлайн жазылу формасы.">
+    <meta name="author" content="[Атыңызды осында жазыңыз]">
+    <title>Жазылу — ШыңдАл</title>
+</head>
+<body>
+
+    <!-- Автор: [Атыңызды осында жазыңыз] -->
+
+    <header>
+        <p>ШыңдАл — Түзете-Дамыту Орталығы</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Басты бет</a></li>
+            <li><a href="specialists.html">Мамандар</a></li>
+            <li><a href="booking.html">Жазылу</a></li>
+            <li><a href="colophon.html">Сайт туралы</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Қабылдауға жазылу</h1>
+
+        <section>
+            <p>
+                <!-- TODO: 150–250 сөзден тұратын, жазылу процесі туралы өз сөзіңізбен жазылған мәтін -->
+                [Мұнда жазылу процесі туралы өз сөзіңізбен жазылған нақты мәтін болуы керек.]
+            </p>
+
+            <!-- figure+figcaption: орталықтың сыртқы көрінісі суреті -->
+            <figure>
+                <img src="Shindal 2.jpeg" alt="ШыңдАл орталығының ғимараты сырттан көрінісі" width="300">
+                <figcaption>ШыңдАл орталығының ғимараты</figcaption>
+            </figure>
+        </section>
+
+        <!--
+            div қолдандым, өйткені форманың айналасында стильдеу үшін жалпы контейнер керек болды,
+            ал header, nav, main, section, article, footer ешқайсысы формалық контейнер мағынасын бермейді
+        -->
+        <div>
+            <form method="POST" action="#">
+                <!-- Бұл форма әлі ешнәрсе жібермейді — сервер жағы курстың келесі кезеңінде қосылады -->
+
+                <fieldset>
+                    <legend>Қабылдауға жазылу формасы</legend>
+
+                    <p>
+                        <label for="fullname">Аты-жөніңіз:</label><br>
+                        <input type="text" id="fullname" name="fullname" placeholder="Мысалы: Айгерім Сәтбаева" required>
+                    </p>
+
+                    <p>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                    </p>
+
+                    <p>
+                        <label for="phone">Телефон:</label><br>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 7XX XXX XX XX" required>
+                    </p>
+
+                    <p>
+                        <label for="child-age">Баланың жасы:</label><br>
+                        <input type="number" id="child-age" name="child-age" min="1" max="18" placeholder="Мысалы: 5">
+                    </p>
+
+                    <p>
+                        <label for="visit-date">Қалаулы күн:</label><br>
+                        <input type="date" id="visit-date" name="visit-date" required>
+                    </p>
+
+                    <fieldset>
+                        <legend>Маман түрі</legend>
+                        <p>
+                            <input type="radio" id="specialist-logo" name="specialist" value="logoped">
+                            <label for="specialist-logo">Логопед</label><br>
+
+                            <input type="radio" id="specialist-defekt" name="specialist" value="defektolog">
+                            <label for="specialist-defekt">Дефектолог</label><br>
+
+                            <input type="radio" id="specialist-psy" name="specialist" value="psiholog">
+                            <label for="specialist-psy">Психолог</label>
+                        </p>
+                    </fieldset>
+
+                    <p>
+                        <label for="first-visit">Алғаш рет пе?</label>
+                        <input type="checkbox" id="first-visit" name="first-visit">
+                    </p>
+
+                    <p>
+                        <label for="preferred-time">Қалаулы уақыт:</label><br>
+                        <select id="preferred-time" name="preferred-time">
+                            <option value="morning">Таңертең</option>
+                            <option value="afternoon">Түс</option>
+                            <option value="evening">Кеш</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="comment">Қосымша ақпарат:</label><br>
+                        <textarea id="comment" name="comment" rows="4" placeholder="Балаңыз туралы қысқаша айтыңыз..."></textarea>
+                    </p>
+
+                    <p>
+                        <button type="submit">Жіберу</button>
+                        <button type="reset">Тазалау</button>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+
+        <section>
+            <h2>Толық ақпарат</h2>
+            <p>
+                Сеанс бағасы туралы толығырақ <a href="specialists.html#price-table">бағалар кестесінен</a> қараңыз.
+            </p>
+            <p>
+                1 сеанс &asymp; 45 минут<sup>*</sup> уақытты алады.<br>
+                <small>* Кейбір қызметтер үшін уақыт өзгеруі мүмкін.</small>
+            </p>
+            <p>
+                <!-- span қолдандым, өйткені абзац ішіндегі бір сөзді ерекшелеу үшін семантикалық тег жоқ, тек стильдеу мақсаты -->
+                Хабарласу үшін: <span>+7 747 826 39 15</span>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Мекенжай: [нақты мекенжай] | Телефон: [нақты телефон]</p>
+        <p>&copy; 2026 ШыңдАл</p>
+    </footer>
+
+</body>
+</html>
