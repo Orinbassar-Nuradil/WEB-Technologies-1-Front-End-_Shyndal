@@ -1,60 +1,80 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ШыңдАл сайтының қалай жасалғаны туралы бет.">
-    <meta name="author" content="[Атыңызды осында жазыңыз]">
-    <title>Сайт туралы — ШыңдАл</title>
+    <meta name="description" content="Parent reviews of the Shindal Correction and Development Center.">
+    <meta name="author" content="Student Name">
+    <title>Reviews — Shindal</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
+    <style>
+        /* The one internal style block in this whole project (used here to
+           demonstrate the cascade). base.css gives every <aside> a teal
+           border-color; this internal rule overrides it to the accent
+           color, but ONLY on this page, because internal styles are read
+           after the external stylesheets and win at equal specificity
+           (both are plain type selectors here). */
+        aside {
+            border-color: var(--color-accent);
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Автор: [Атыңызды осында жазыңыз] -->
 
     <header>
-        <p>ШыңдАл — Түзете-Дамыту Орталығы</p>
+        <p>Shindal — Correction and Development Center</p>
     </header>
 
-    <nav>
+    <nav id="primary-nav">
         <ul>
-            <li><a href="index.html">Басты бет</a></li>
-            <li><a href="specialists.html">Мамандар</a></li>
-            <li><a href="booking.html">Жазылу</a></li>
-            <li><a href="colophon.html">Сайт туралы</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="specialists.html">Specialists</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <!-- ul used again here, separate from the main page navigation, because account links are a distinct group -->
+        <ul class="auth-nav">
+            <li><a href="register.html" class="nav-link">Register</a></li>
+            <li><a href="profile.html" class="nav-link profile-link">My Profile</a></li>
         </ul>
     </nav>
 
     <main>
-        <h1>Сайт қалай жасалды</h1>
+        <h1>What parents say</h1>
 
-        <!-- section қолдандым, өйткені бұл мазмұнның дербес тақырыптық бөлігі (құралдар туралы), ал article сай келмейді — бұл бөлек тұра алатын жарияланым емес -->
         <section>
-            <h2>Құралдар</h2>
             <p>
-                <!-- TODO: осында сайтты қандай құралдармен (мәтін редакторы, браузер т.б.) жасағаныңызды,
-                     қанша уақыт кеткенін өз сөзіңізбен жазыңыз (150–250 сөз). -->
-                [Мұнда сайтты жасау процесі туралы өз сөзіңізбен жазылған мәтін болуы керек.]
+                Over the years, Shindal has worked with hundreds of families across our Astana, Kosshy and Taraz branches. Below is a review shared by one of our parents. More reviews from families at each branch can be found on the branch's own Instagram page, linked on the <a href="index.html#branches">Home page</a>.
             </p>
         </section>
 
-        <!--
-            code, pre, kbd, samp тегтері осы бетке табиғи түрде сай келеді,
-            өйткені бұл бет техникалық процесті сипаттайды.
-            Мысал ретінде төменде HTML файлын ашу командасы көрсетілген.
-        -->
+        <!-- aside used because a testimonial is supplementary to the main page content, not the primary subject of the page -->
+        <aside class="center-grid">
+            <blockquote cite="https://www.instagram.com/shindal_astana/">
+                Since we started coming to the center, my child's speech and behavior have changed for the better in a huge way. I am endlessly grateful for the specialists' professionalism and patience!
+            </blockquote>
+            <p>— <cite>Aigerim Maratkyzy, May 12, 2025</cite></p>
+        </aside>
+
         <section>
-            <h2>Мысал: файлды браузерде ашу</h2>
-            <p>Терминалда келесі команданы теріңіз:</p>
-            <pre><code>open index.html</code></pre>
-            <p>Пернетақтадан <kbd>Ctrl</kbd> + <kbd>O</kbd> басып, файлды қолмен де таңдауға болады.</p>
-            <p>Сәтті ашылса, браузерде мынадай нәтиже шығады: <samp>ШыңдАл — Түзете-Дамыту Орталығы</samp></p>
+            <h2>Share your experience</h2>
+            <p>
+                If your child attends Shindal, we would love to hear from you. Message us on
+                <a href="https://wa.me/77478263915" target="_blank" rel="noopener">WhatsApp</a>
+                or write to us <a href="mailto:shindal.astana@gmail.com">by email</a>.
+            </p>
         </section>
     </main>
 
-    <footer>
-        <p>Мекенжай: [нақты мекенжай] | Телефон: [нақты телефон]</p>
-        <p>&copy; 2026 ШыңдАл</p>
+    <footer id="site-footer">
+        <p>Astana branch: 27/1 Ilyas Omarov Street | Phone: +7 747 826 39 15</p>
+        <p>&copy; 2026 Shindal</p>
     </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact" aria-label="Message us on WhatsApp">💬</a>
 
 </body>
 </html>
