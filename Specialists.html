@@ -1,162 +1,218 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ШыңдАл орталығының мамандары: логопед, дефектолог, психолог, АФК бойынша нақты кесте мен бағалар.">
-    <meta name="author" content="[Атыңызды осында жазыңыз]">
-    <title>Мамандар — ШыңдАл</title>
+    <meta name="description" content="Shindal specialists: speech therapist, special education teacher, psychologist, AFE and more, with schedule and prices.">
+    <meta name="author" content="Student Name">
+    <title>Specialists — Shindal</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
 </head>
 <body>
 
-    <!-- Автор: [Атыңызды осында жазыңыз] -->
 
     <header>
-        <p>ШыңдАл — Түзете-Дамыту Орталығы</p>
+        <p>Shindal — Correction and Development Center</p>
     </header>
 
-    <nav>
+    <nav id="primary-nav">
         <ul>
-            <li><a href="index.html">Басты бет</a></li>
-            <li><a href="specialists.html">Мамандар</a></li>
-            <li><a href="booking.html">Жазылу</a></li>
-            <li><a href="colophon.html">Сайт туралы</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="specialists.html">Specialists</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <!-- ul used again here, separate from the main page navigation, because account links are a distinct group -->
+        <ul class="auth-nav">
+            <li><a href="register.html" class="nav-link">Register</a></li>
+            <li><a href="profile.html" class="nav-link profile-link">My Profile</a></li>
         </ul>
     </nav>
 
     <main>
-        <h1 id="top">Біздің мамандар</h1>
+        <h1 id="top">Our specialists</h1>
 
-        <!-- section қолдандым, өйткені бұл беттің тақырыптық бөлігі, ал article осында сай келмейді — мамандар туралы мәтін дербес "жарияланым" емес -->
+        <!-- section used here, not article, because this is the page's introductory block, not a standalone piece of content -->
         <section>
             <p>
-                <!-- TODO: 150–250 сөзден тұратын, орталықтың мамандары туралы өз сөзіңізбен жазылған мәтін -->
-                [Мұнда мамандар тобы туралы өз сөзіңізбен жазылған нақты мәтін болуы керек.]
+                The Shindal team consists of qualified professionals with higher education in special education, speech therapy, defectology and child psychology, each with years of hands-on experience. Every specialist regularly completes professional development courses and applies modern, evidence-based teaching methods in practice.
             </p>
-            <p>Толық бағалар кестесін төменнен қараңыз: <a href="#price-table">Бағалар кестесіне өту</a></p>
+            <p>
+                Our staff treat every child as an individual and take their psychological and physiological development into account. Specialists build a warm, trusting relationship with each child and run sessions in a playful, engaging and effective way. They also give parents practical advice on continuing the work at home.
+            </p>
+            <p>All sessions are <strong>individual, one-on-one with the child</strong> — we do not run group classes for correctional work.</p>
+            <p>See the full price list below: <a href="#price-table">jump to price table</a></p>
         </section>
 
-        <!-- article қолдандым, өйткені әр маман туралы мәтін дербес тұра алатын, өз алдына мағыналы бірлік -->
+        <!-- article used for each specialist category, because each description could stand on its own as a separate piece of content -->
         <article>
-            <h2>Логопед — <abbr title="Логопедиялық терапия">ЛОГО</abbr></h2>
-            <p>
-                <strong>Мамандық:</strong> сөйлеу тілі кемістіктерін түзету. <em>Балалармен де, ересектермен де</em> жұмыс істейді.
-            </p>
-            <!-- figure+figcaption қолдандым, өйткені сурет пен оның қысқаша сипаттамасы бір мағыналық блок құрайды -->
-            <figure>
-                <img src="Shindal 1.jpeg" alt="Логопед маман баламен сабақ өткізіп отыр" width="300">
-                <figcaption>Логопедиялық сабақ барысы</figcaption>
+            <h2>Speech Therapist — <abbr title="Speech-language pathology">SLP</abbr></h2>
+            <!-- figure floated left so the paragraph text below wraps around it;
+                 cleared on the next article via .clear-after-float -->
+            <figure class="float-img">
+                <img src="Shindal 1.jpeg" alt="A speech therapist working with a child during a session" width="300">
+                <figcaption>A speech therapy session in progress</figcaption>
             </figure>
+            <p>
+                <strong>Specialty:</strong> correcting speech disorders. <em>Works with both children and adults.</em> Every session is built around the child's own pace, using play, repetition and clear modeling of sounds and words so progress feels natural rather than forced, and short home exercises are shared with parents after each visit.
+            </p>
         </article>
 
-        <article>
-            <h2>Дефектолог</h2>
+        <article class="clear-after-float">
+            <h2>Special Education Teacher (Defectologist)</h2>
             <p>
-                <b>Жұмыс бағыты:</b> дамуында ерекшелігі бар балалармен түзете-дамыту жұмысы. <i>Жеке бағдарлама</i> бойынша жұмыс істейді.
+                <b>Focus:</b> correction and development work with children who have developmental needs. Works to an <i>individual program</i> for each child.
             </p>
         </article>
 
         <article>
-            <h2><abbr title="Адаптивті Физикалық Мәдениет">АФК</abbr> және <abbr title="Applied Behavior Analysis">ABA</abbr> терапия</h2>
-            <p>
-                Дене қимылын дамыту және мінез-құлықтық терапия. <mark>Жаңа топ ашылды</mark> — орын саны шектеулі.
-            </p>
-            <img src="images/afk-session.jpg" alt="АФК сабағында бала жаттығу жасап тұр">
+            <h2>Psychologist</h2>
+            <p>Works with children's emotional and behavioral development, and consults parents on communication and support strategies at home.</p>
         </article>
 
-        <!-- aside қолдандым, өйткені бұл негізгі мазмұнға қосымша, бөлек тұра алатын ақпарат (пікір) -->
-        <aside>
+        <article>
+            <h2><abbr title="Adaptive Physical Education">AFE</abbr> and <abbr title="Applied Behavior Analysis">ABA</abbr> Therapy</h2>
+            <!-- relative containing block for the absolutely-positioned .badge below -->
+            <p class="badge-wrap">
+                Physical movement development and behavioral therapy. <mark>A new group has opened</mark> — places are limited.
+                <span class="badge">NEW</span>
+            </p>
+            <img src="images/afk-session.jpg" alt="A child exercising during an AFE session">
+        </article>
+
+        <article>
+            <h2>Sensory Integration Specialist</h2>
+            <p>Helps children process and organize sensory information from the body and environment through structured, playful activities.</p>
+        </article>
+
+        <article>
+            <h2>Neuropsychologist</h2>
+            <p>Assesses how brain function affects learning, attention and behavior, and builds a correction plan based on the findings.</p>
+        </article>
+
+        <!-- aside used because this is supplementary content next to the main body — a testimonial, not primary content -->
+        <aside class="center-grid">
             <blockquote cite="https://www.instagram.com/shindal_astana/">
-                <!-- TODO: осында Instagram-дағы немесе өзіңіз жинаған НАҚТЫ пікірді, автордың атымен және күнімен қойыңыз -->
-                [Мұнда клиенттің нақты пікірі болуы керек — өзіңіз жинаған, автор аты мен күнімен.]
+                Since we started coming to the center, my child's speech and behavior have changed for the better in a huge way. I am endlessly grateful for the specialists' professionalism and patience!
             </blockquote>
-            <p>— <cite>[Автор аты, күні]</cite></p>
+            <p>— <cite>Aigerim Maratkyzy, May 12, 2025</cite></p>
         </aside>
 
         <hr>
 
         <section id="price-table">
-            <h2>Қызметтер мен бағалар</h2>
+            <h2>Services and prices</h2>
             <table>
-                <caption>ШыңдАл орталығының 2026 жылғы бағалар кестесі</caption>
+                <caption>Shindal Center 2026 price list</caption>
                 <thead>
                     <tr>
-                        <th scope="col">Қызмет</th>
-                        <th scope="col">Ұзақтығы</th>
-                        <th scope="col">Бағасы</th>
+                        <th scope="col">Service</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">Логопед сеансы</th>
-                        <td>45 мин</td>
-                        <!-- TODO: нақты бағаны қойыңыз -->
-                        <td>[баға] ₸</td>
+                    <!-- class .price-highlight marks our most-booked service -->
+                    <tr class="price-highlight">
+                        <th scope="row">Speech therapy session</th>
+                        <td>40 min</td>
+                        <td>7000 &#8376;</td>
                     </tr>
                     <tr>
-                        <th scope="row">Дефектолог сеансы</th>
-                        <td>45 мин</td>
-                        <td>[баға] ₸</td>
+                        <th scope="row">Special education (defectology) session</th>
+                        <td>40 min</td>
+                        <td>7000 &#8376;</td>
                     </tr>
                     <tr>
-                        <th scope="row">ABA терапия</th>
-                        <td>60 мин</td>
-                        <td>[баға] ₸</td>
+                        <th scope="row">Psychologist session</th>
+                        <td>40 min</td>
+                        <td>7000 &#8376;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Adaptive physical education (AFE)</th>
+                        <td>40 min</td>
+                        <td>6000 &#8376;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">ABA therapy</th>
+                        <td>40 min</td>
+                        <td>7000 &#8376;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sensory integration</th>
+                        <td>40 min</td>
+                        <td>7000 &#8376;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Neurologist consultation</th>
+                        <td>40 min</td>
+                        <td>10000 &#8376;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">LFK (physical therapy) specialist</th>
+                        <td>40 min</td>
+                        <td>7000 &#8376;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Neuropsychologist session</th>
+                        <td>40 min</td>
+                        <td>7000 &#8376;</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
         <section>
-            <h2>Жұмыс кестесі</h2>
-            <!-- Күн ішіндегі сағаттарды маман бойынша топтастыру үшін кірістірілген тізім қолдандым -->
+            <h2>Work schedule</h2>
+            <!-- nested list used to group hours by time block within the working week -->
             <ul>
-                <li>Дүйсенбі — Жұма
+                <li>Monday &ndash; Friday
                     <ul>
-                        <li>09:00–13:00 — Логопед</li>
-                        <li>14:00–18:00 — Дефектолог</li>
+                        <li>08:00&ndash;13:00 &mdash; sessions</li>
+                        <li>13:00&ndash;14:30 &mdash; lunch break</li>
+                        <li>14:30&ndash;19:00 &mdash; sessions</li>
                     </ul>
                 </li>
-                <li>Сенбі
-                    <ul>
-                        <li>10:00–14:00 — Психолог</li>
-                    </ul>
-                </li>
+                <li>Saturday &mdash; by appointment</li>
             </ul>
 
-            <h3>Қабылдау кезеңдері (реті бойынша)</h3>
+            <h3>Intake steps (in order)</h3>
             <ol start="1">
-                <li>Алғашқы диагностика</li>
-                <li>Жеке бағдарлама құру</li>
-                <li>Тұрақты сеанстар</li>
+                <li>Initial diagnostic session</li>
+                <li>Building an individual program</li>
+                <li>Regular sessions</li>
             </ol>
 
-            <h3>Терминдер сөздігі</h3>
+            <h3>Glossary</h3>
             <dl>
-                <dt>Сенсорлық интеграция</dt>
-                <dd>Ми мен дене арасындағы сезім ақпаратын өңдеу қабілетін дамыту әдісі.</dd>
-                <dt>ABA терапия</dt>
-                <dd>Мінез-құлықты талдауға негізделген терапия түрі.</dd>
+                <dt>Sensory integration</dt>
+                <dd>A method for developing the brain's ability to process sensory information from the body.</dd>
+                <dt>ABA therapy</dt>
+                <dd>A type of therapy based on the analysis of behavior.</dd>
             </dl>
         </section>
 
         <section>
-            <h2>Байланыс</h2>
+            <h2>Contact</h2>
             <p>
-                Толығырақ ақпарат алу үшін <a href="https://www.instagram.com/shindal_astana/" target="_blank" rel="noopener">Instagram парақшамызға</a> өтіңіз,
-                немесе <a href="mailto:[email@example.com]">email арқылы жазыңыз</a>,
-                немесе <a href="tel:+77478263915">телефон соғыңыз</a>.
+                For more information, visit our <a href="https://www.instagram.com/shindal_astana/" target="_blank" rel="noopener">Instagram page</a>,
+                write to us <a href="mailto:shindal.astana@gmail.com">by email</a>,
+                or <a href="tel:+77478263915">call us</a>.
             </p>
-            <p>Дефектолог маманы айтқандай: <q>Әр бала — өз қарқынымен дамиды</q>.</p>
-            <p>Орталықтың қысқаша аты &mdash; &laquo;ШыңдАл&raquo; &copy; 2026&nbsp;ж.</p>
-            <p><a href="#top">Жоғарыға оралу</a></p>
+            <p>As one of our specialists puts it: <q>Every child develops at their own pace</q>.</p>
+            <p>Short name of the center &mdash; &laquo;Shindal&raquo; &copy; 2026.</p>
+            <p><a href="#top">Back to top</a></p>
         </section>
     </main>
 
-    <footer>
-        <p>Мекенжай: [нақты мекенжай] | Телефон: [нақты телефон]</p>
-        <p>&copy; 2026 ШыңдАл</p>
+    <footer id="site-footer">
+        <p>Astana branch: 27/1 Ilyas Omarov Street | Phone: +7 747 826 39 15</p>
+        <p>&copy; 2026 Shindal</p>
     </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact" aria-label="Message us on WhatsApp">💬</a>
 
 </body>
 </html>
