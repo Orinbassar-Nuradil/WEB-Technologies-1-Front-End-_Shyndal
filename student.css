@@ -1,0 +1,166 @@
+/* =============================================================================
+   student.css — personal stylesheet (working alone on this project)
+   Linked SECOND on every page, after base.css, so these rules load after
+   the shared ones and can rely on / override the cascade on purpose.
+
+   >>> RENAME THIS FILE to your own name before submitting (e.g. aigerim.css)
+   >>> and update the <link href="css/student.css"> line on every page to match.
+   ============================================================================= */
+
+/* ---------------------------------------------------------------------------
+   Specificity experiment (kept here in the CSS itself, not in a report)
+   Both rules below target the same real element: the "My Profile" link,
+   which carries both class="nav-link" and class="profile-link" in the HTML.
+--------------------------------------------------------------------------- */
+
+/* Rule 1 — specificity: 0,1,1  (one class ".auth-nav" + one type "a") */
+.auth-nav a {
+    color: #ffe9c7;
+}
+
+/* Rule 2 — specificity: 0,2,0  (two classes: ".auth-nav" + ".profile-link")
+   Rule 2 WINS over rule 1, because two classes (0,2,0) outrank one class
+   plus one type selector (0,1,1). The conflict is resolved by writing a
+   MORE SPECIFIC selector, not by reaching for !important. */
+.auth-nav .profile-link {
+    color: var(--color-accent);
+}
+
+/* ---------------------------------------------------------------------------
+   The one internal <style> block in this whole project lives in the <head>
+   of reviews.html. The one inline style="" attribute lives on booking.html,
+   on the phone-number <span>. Both are commented in place, right there.
+--------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------
+   The one sanctioned !important in this whole project.
+   The "NEW" badge must always show in the alert color, even if some other,
+   more specific rule is added later (e.g. inside a themed card) and
+   accidentally targets .badge too — it is a small, deliberately loud
+   exception, and this is the only place !important is used anywhere.
+--------------------------------------------------------------------------- */
+.badge {
+    background-color: var(--color-badge) !important;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15em 0.6em;
+    border-radius: 999px;
+    position: absolute; /* absolute: placed inside .badge-wrap, its containing block */
+    top: -0.6em;
+    right: -0.6em;
+}
+
+.badge-wrap {
+    position: relative; /* relative: becomes the containing block for the absolute .badge above */
+    display: inline-block;
+}
+
+/* ---------------------------------------------------------------------------
+   Index page: whole <main> laid out as a CSS Grid
+--------------------------------------------------------------------------- */
+.home-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+/* the intro heading and the branches table need the full row's width,
+   not one narrow grid column — this is the "spans more than one column"
+   requirement */
+.home-main > h1,
+.home-main > #branches {
+    grid-column: 1 / -1;
+}
+
+/* Grid was chosen here (not flexbox) because the layout needs fixed,
+   even tracks that specific items can deliberately span across, rather
+   than just a row that wraps — that span behaviour is what grid-column
+   gives cleanly and flexbox does not. */
+
+/* ---------------------------------------------------------------------------
+   Index page: the services list as a flex row that wraps and grows/shrinks
+--------------------------------------------------------------------------- */
+.service-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    margin: 1.5rem 0;
+    padding: 0;
+}
+
+/* Box model on purpose: border-box (set globally in base.css) keeps this
+   border+padding inside the box's own width, margin (the gap above)
+   separates the cards, and the border gives each card a visible edge. */
+.service-row li {
+    flex: 1 1 160px; /* grow and shrink, starting from a 160px basis */
+    background-color: #fff;
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    text-align: center;
+}
+
+/* :first-child — the very first service in the list is the one we lead
+   with, so it stands out and takes double the space of the others */
+.service-row li:first-child {
+    flex-grow: 2;
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+/* ---------------------------------------------------------------------------
+   Specialists page: float + clear
+--------------------------------------------------------------------------- */
+.float-img {
+    float: left;
+    width: 220px;
+    margin: 0 1.25rem 0.75rem 0;
+}
+
+.float-img img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.float-img figcaption {
+    font-size: 0.8rem;
+    text-align: center;
+    color: #555;
+}
+
+/* Without this clear, the next article ("Special Education Teacher") would
+   rise up and tuck in next to the floated figure instead of starting a
+   clean new block below it — a floated element is taken out of normal
+   flow, so its parent no longer reports the extra height it takes up. */
+.clear-after-float {
+    clear: both;
+}
+
+/* adjacent sibling selector (+) — only the section/element that comes
+   immediately after each page's main heading gets a touch more top space,
+   to separate the title from the very first block of content */
+h1 + section {
+    margin-top: 0.5rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Testimonial box: CSS grid centering (technique 3)
+--------------------------------------------------------------------------- */
+aside.center-grid {
+    display: grid;
+    place-items: center; /* CENTERING TECHNIQUE 3 (grid): centers the quote block inside the box */
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Specialists page: highlight one row of the price table
+--------------------------------------------------------------------------- */
+.price-highlight td,
+.price-highlight th {
+    background-color: rgba(232, 163, 61, 0.18);
+    font-weight: 700;
+}

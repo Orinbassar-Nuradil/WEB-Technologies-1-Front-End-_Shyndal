@@ -1,0 +1,254 @@
+/* =============================================================================
+   base.css — shared styles for the Shindal website
+   Working alone on this project, so this one file covers header, nav, main
+   and footer for every page. Linked FIRST on every page, before student.css,
+   so the cascade / load order is visible (student.css can then override it).
+   =============================================================================
+
+   COLOR PALETTE — five colors max, one short reason each:
+   #2f5d50            deep teal green   -> primary brand color; calm and
+                       professional, fits a children's therapy center
+   #f7f3ea            warm off-white    -> page background; softer than pure
+                       white, feels less clinical for parents and children
+   #e8a33d            warm amber        -> accent color for buttons/highlights;
+                       warm and inviting next to the teal
+   rgb(35, 68, 58)     dark teal (rgb)  -> hover/pressed state for the nav and
+                       buttons; written in rgb() for the exercise
+   tomato              named color      -> the one CSS named color, used only
+                       for the small "NEW" badge so it reads as an alert
+   ============================================================================= */
+
+/* universal selector — used once, so every element's own border+padding is
+   included in its declared width/height instead of added on top of it */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primary: #2f5d50;
+    --color-bg: #f7f3ea;
+    --color-accent: #e8a33d;
+    --color-primary-dark: rgb(35, 68, 58);
+    --color-badge: tomato;
+
+    --font-heading: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
+    --font-body: 'Georgia', 'Times New Roman', serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* type selector */
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: #222;
+    background-color: var(--color-bg);
+}
+
+/* grouping selector with commas — every heading level shares the heading font */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    color: var(--color-primary);
+    margin: 0 0 0.6em 0;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+/* Margin-collapse note: two adjacent <p> elements inside the same section
+   collapse their vertical margins (the smaller one is absorbed into the
+   larger one, they do NOT add up) — that's why card spacing below (e.g.
+   .service-row li, aside) uses padding on the parent box instead of relying
+   only on stacked paragraph margins to create visual gaps. */
+
+/* descendant selector — matches every <p> nested anywhere inside a <section>
+   within <main>, no matter how deep, not only direct children */
+main section p {
+    max-width: 65ch;
+}
+
+header {
+    background-color: var(--color-primary);
+    padding: 1rem 1.5rem;
+    /* relative: this makes <header> the containing block for the
+       decorative ::before bar positioned absolutely below */
+    position: relative;
+}
+
+header p {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+/* pseudo-element ::before — purely decorative accent bar, matches nothing
+   in the HTML itself, generated entirely from CSS */
+header::before {
+    content: "";
+    position: absolute; /* absolute: placed inside header, its containing block */
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: var(--color-accent);
+}
+
+/* id selector — there is exactly one <nav> landmark per page, so a unique
+   id is the right tool here rather than a reusable class */
+nav#primary-nav {
+    background-color: var(--color-primary-dark);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    flex-direction: row; /* explicit, even though row is the default, per the flex-direction requirement */
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* child combinator (>) — matches only the <ul> elements that are DIRECT
+   children of <nav> (the page-nav list and the auth-nav list), not any
+   list nested further inside them */
+nav#primary-nav > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.25rem;
+}
+
+nav#primary-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    padding: 0.25rem 0.1rem;
+}
+
+/* pseudo-classes :hover and :focus, grouped together */
+nav#primary-nav a:hover,
+nav#primary-nav a:focus {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+/* :focus on form controls, wherever they appear on the site */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+main {
+    max-width: 960px;
+    margin: 0 auto; /* CENTERING TECHNIQUE 1 (margin auto): centers the whole content column horizontally */
+    padding: 2rem 1.5rem;
+}
+
+aside {
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    background-color: #fff;
+}
+
+/* id selector — the second id: also a unique, one-per-page landmark */
+footer#site-footer {
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 1.5rem;
+    text-align: center; /* alignment done with text-align, never nbsp or empty elements */
+}
+
+footer#site-footer a {
+    color: var(--color-accent);
+}
+
+/* attribute selector — matches every link on the site that opens in a new
+   tab (all the Instagram / WhatsApp links use target="_blank") */
+a[target="_blank"] {
+    border-bottom: 1px dotted currentColor;
+}
+
+/* Reusable button class, used on real <button> elements and on links
+   styled to look like buttons (e.g. Register / My Profile). Box model on
+   purpose: border-box (set globally above) keeps border+padding inside the
+   declared size, margin separates buttons from neighbours, and the border
+   gives a visible edge — none of this is left at browser defaults. */
+.btn {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.6em 1.2em;
+    margin: 0.25em 0;
+    border: 2px solid var(--color-primary);
+    border-radius: 6px;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+
+/* pseudo-element ::after — small decorative arrow only after the account links */
+.auth-nav .nav-link::after {
+    content: " \203A"; /* › */
+}
+
+/* Fixed element — stays on screen no matter how far the visitor scrolls */
+.floating-contact {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* CENTERING TECHNIQUE 2 (flex): centers the emoji inside the circle */
+    text-decoration: none;
+    font-size: 1.3rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Static explained: every ordinary element above with no position rule at
+   all (p, li, headings, plain section content) is position: static by
+   default — it stays exactly where normal document flow places it and
+   simply ignores any top/left/right/bottom value. */
