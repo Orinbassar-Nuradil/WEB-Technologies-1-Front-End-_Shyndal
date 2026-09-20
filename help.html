@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Help page for the Shindal website: how to reach us and how this site was built.">
+    <meta name="author" content="Student Name">
+    <title>Help — Shindal</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
+</head>
+<body>
+
+    <header>
+        <p>Shindal — Correction and Development Center</p>
+    </header>
+
+    <nav id="primary-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="specialists.html">Specialists</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <!-- ul used again here, separate from the main page navigation, because account links are a distinct group -->
+        <ul class="auth-nav">
+            <li><a href="register.html" class="nav-link">Register</a></li>
+            <li><a href="profile.html" class="nav-link profile-link">My Profile</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Help &amp; about this site</h1>
+
+        <section>
+            <h2>Need help right now?</h2>
+            <p>
+                Call the Astana branch at <a href="tel:+77478263915">+7 747 826 39 15</a>,
+                message us on <a href="https://wa.me/77478263915" target="_blank" rel="noopener">WhatsApp</a>,
+                or email <a href="mailto:shindal.astana@gmail.com">shindal.astana@gmail.com</a>.
+                For the Booking form, see the <a href="booking.html">Booking page</a>.
+            </p>
+        </section>
+
+        <!-- section used here, not article, because this is a topical part of the page (tools used), not a standalone publication -->
+        <section>
+            <h2>How this site was built</h2>
+            <p>
+                This website was built as part of Assignment 1 of the "Introduction to Web Technologies" course. Pure HTML5 was used for the structure and markup. As required by the assignment, no CSS stylesheet and no JavaScript were used &mdash; the site consists entirely of unstyled, semantic markup.
+            </p>
+            <p>
+                Visual Studio Code was used to write the code, and Google Chrome was used to check the files locally. Planning the semantic structure, writing the content and validating it took about 6 hours. Code quality was checked with the W3C Markup Validation Service, and every error was fixed. Git was used for version control, with all changes saved through proper commits.
+            </p>
+        </section>
+
+        <!-- code, pre, kbd and samp fit naturally on this page because it describes a technical process -->
+        <section>
+            <h2>Example: opening the file in a browser</h2>
+            <p>Type the following command in the terminal:</p>
+            <pre><code>open index.html</code></pre>
+            <p>You can also open the file manually by pressing <kbd>Ctrl</kbd> + <kbd>O</kbd>.</p>
+            <p>If it opens successfully, the browser will show: <samp>Shindal — Correction and Development Center</samp></p>
+        </section>
+    </main>
+
+    <footer id="site-footer">
+        <p>Astana branch: 27/1 Ilyas Omarov Street | Phone: +7 747 826 39 15</p>
+        <p>&copy; 2026 Shindal</p>
+    </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact" aria-label="Message us on WhatsApp">💬</a>
+
+</body>
+</html>
