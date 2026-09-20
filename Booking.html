@@ -1,59 +1,63 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ШыңдАл орталығына онлайн жазылу формасы.">
-    <meta name="author" content="[Атыңызды осында жазыңыз]">
-    <title>Жазылу — ШыңдАл</title>
+    <meta name="description" content="Online booking form for the Shindal Correction and Development Center.">
+    <meta name="author" content="Student Name">
+    <title>Booking — Shindal</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
 </head>
 <body>
 
-    <!-- Автор: [Атыңызды осында жазыңыз] -->
-
     <header>
-        <p>ШыңдАл — Түзете-Дамыту Орталығы</p>
+        <p>Shindal — Correction and Development Center</p>
     </header>
 
-    <nav>
+    <nav id="primary-nav">
         <ul>
-            <li><a href="index.html">Басты бет</a></li>
-            <li><a href="specialists.html">Мамандар</a></li>
-            <li><a href="booking.html">Жазылу</a></li>
-            <li><a href="colophon.html">Сайт туралы</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="specialists.html">Specialists</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <!-- ul used again here, separate from the main page navigation, because account links are a distinct group -->
+        <ul class="auth-nav">
+            <li><a href="register.html" class="nav-link">Register</a></li>
+            <li><a href="profile.html" class="nav-link profile-link">My Profile</a></li>
         </ul>
     </nav>
 
     <main>
-        <h1>Қабылдауға жазылу</h1>
+        <h1>Book an appointment</h1>
 
         <section>
             <p>
-                <!-- TODO: 150–250 сөзден тұратын, жазылу процесі туралы өз сөзіңізбен жазылған мәтін -->
-                [Мұнда жазылу процесі туралы өз сөзіңізбен жазылған нақты мәтін болуы керек.]
+                Booking an appointment with a Shindal specialist is simple and convenient. Fill in the online form below to request a session. Our administrators review every request quickly and will contact you by phone or messenger to confirm a time that works for you.
+            </p>
+            <p>
+                Please provide the parent's full name, a contact phone number, the child's age and the specialist you need. If this is your first visit to our center, we will first schedule a comprehensive diagnostic session. This helps us assess the child's developmental level and plan the following sessions correctly.
             </p>
 
-            <!-- figure+figcaption: орталықтың сыртқы көрінісі суреті -->
             <figure>
-                <img src="Shindal 2.jpeg" alt="ШыңдАл орталығының ғимараты сырттан көрінісі" width="300">
-                <figcaption>ШыңдАл орталығының ғимараты</figcaption>
+                <img src="Shindal 2.jpeg" alt="Exterior view of the Shindal center building" width="300">
+                <figcaption>The Shindal center building</figcaption>
             </figure>
         </section>
 
-        <!--
-            div қолдандым, өйткені форманың айналасында стильдеу үшін жалпы контейнер керек болды,
-            ал header, nav, main, section, article, footer ешқайсысы формалық контейнер мағынасын бермейді
-        -->
+        <!-- div used here as a general styling container around the form; header, nav, main, section, article and footer don't carry the meaning of a form wrapper -->
         <div>
             <form method="POST" action="#">
-                <!-- Бұл форма әлі ешнәрсе жібермейді — сервер жағы курстың келесі кезеңінде қосылады -->
+                <!-- This form does not submit anywhere yet — server-side handling will be added in a later stage of the course -->
 
                 <fieldset>
-                    <legend>Қабылдауға жазылу формасы</legend>
+                    <legend>Appointment booking form</legend>
 
                     <p>
-                        <label for="fullname">Аты-жөніңіз:</label><br>
-                        <input type="text" id="fullname" name="fullname" placeholder="Мысалы: Айгерім Сәтбаева" required>
+                        <label for="fullname">Your full name:</label><br>
+                        <input type="text" id="fullname" name="fullname" placeholder="e.g. Aigerim Satbayeva" required>
                     </p>
 
                     <p>
@@ -62,81 +66,214 @@
                     </p>
 
                     <p>
-                        <label for="phone">Телефон:</label><br>
+                        <label for="phone">Phone:</label><br>
                         <input type="tel" id="phone" name="phone" placeholder="+7 7XX XXX XX XX" required>
                     </p>
 
                     <p>
-                        <label for="child-age">Баланың жасы:</label><br>
-                        <input type="number" id="child-age" name="child-age" min="1" max="18" placeholder="Мысалы: 5">
+                        <label for="child-age">Child's age:</label><br>
+                        <input type="number" id="child-age" name="child-age" min="1" max="18" placeholder="e.g. 5">
                     </p>
 
                     <p>
-                        <label for="visit-date">Қалаулы күн:</label><br>
+                        <label for="visit-date">Preferred date:</label><br>
                         <input type="date" id="visit-date" name="visit-date" required>
                     </p>
 
+                    <p>
+                        <label for="branch">Branch:</label><br>
+                        <select id="branch" name="branch">
+                            <option value="astana">Astana</option>
+                            <option value="kosshy">Kosshy</option>
+                            <option value="taraz">Taraz</option>
+                        </select>
+                    </p>
+
                     <fieldset>
-                        <legend>Маман түрі</legend>
-                        <p>
-                            <input type="radio" id="specialist-logo" name="specialist" value="logoped">
-                            <label for="specialist-logo">Логопед</label><br>
+                        <legend>Specialist</legend>
+                        <!-- One person can appear in more than one specialty group below (e.g. a specialist who works
+                             both as a speech therapist and a special education teacher). Each radio still shares the
+                             same "specialist" name, so only one specific person can be picked across the whole form. -->
 
-                            <input type="radio" id="specialist-defekt" name="specialist" value="defektolog">
-                            <label for="specialist-defekt">Дефектолог</label><br>
+                        <fieldset>
+                            <legend>Speech Therapist</legend>
+                            <p>
+                                <input type="radio" id="spec-1" name="specialist" value="speech-therapist-1">
+                                <label for="spec-1">Yerlan Zhaksybekov</label><br>
 
-                            <input type="radio" id="specialist-psy" name="specialist" value="psiholog">
-                            <label for="specialist-psy">Психолог</label>
-                        </p>
+                                <input type="radio" id="spec-2" name="specialist" value="speech-therapist-2">
+                                <label for="spec-2">Aigerim Nurlankyzy</label><br>
+
+                                <input type="radio" id="spec-3" name="specialist" value="speech-therapist-3">
+                                <label for="spec-3">Dana Serikova</label>
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Special Education Teacher</legend>
+                            <p>
+                                <input type="radio" id="spec-4" name="specialist" value="special-education-1">
+                                <label for="spec-4">Yerlan Zhaksybekov</label><br>
+
+                                <input type="radio" id="spec-5" name="specialist" value="special-education-2">
+                                <label for="spec-5">Timur Akhmetov</label><br>
+
+                                <input type="radio" id="spec-6" name="specialist" value="special-education-3">
+                                <label for="spec-6">Gulnara Ospanova</label>
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Psychologist</legend>
+                            <p>
+                                <input type="radio" id="spec-7" name="specialist" value="psychologist-1">
+                                <label for="spec-7">Dana Serikova</label><br>
+
+                                <input type="radio" id="spec-8" name="specialist" value="psychologist-2">
+                                <label for="spec-8">Askhat Dyussenov</label><br>
+
+                                <input type="radio" id="spec-9" name="specialist" value="psychologist-3">
+                                <label for="spec-9">Madina Kairatkyzy</label>
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Adaptive Physical Education (AFE)</legend>
+                            <p>
+                                <input type="radio" id="spec-10" name="specialist" value="afe-1">
+                                <label for="spec-10">Nurbol Satybaldy</label><br>
+
+                                <input type="radio" id="spec-11" name="specialist" value="afe-2">
+                                <label for="spec-11">Zhanna Tolegenova</label><br>
+
+                                <input type="radio" id="spec-12" name="specialist" value="afe-3">
+                                <label for="spec-12">Bekzat Assanov</label>
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>ABA Therapy</legend>
+                            <p>
+                                <input type="radio" id="spec-13" name="specialist" value="aba-1">
+                                <label for="spec-13">Timur Akhmetov</label><br>
+
+                                <input type="radio" id="spec-14" name="specialist" value="aba-2">
+                                <label for="spec-14">Ainur Zhumabekova</label>
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Sensory Integration</legend>
+                            <p>
+                                <input type="radio" id="spec-15" name="specialist" value="sensory-1">
+                                <label for="spec-15">Ainur Zhumabekova</label><br>
+
+                                <input type="radio" id="spec-16" name="specialist" value="sensory-2">
+                                <label for="spec-16">Damir Nurlanov</label><br>
+
+                                <input type="radio" id="spec-17" name="specialist" value="sensory-3">
+                                <label for="spec-17">Saya Bekova</label>
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Neurologist Consultation</legend>
+                            <p>
+                                <input type="radio" id="spec-18" name="specialist" value="neurologist-1">
+                                <label for="spec-18">Rinat Abenov</label><br>
+
+                                <input type="radio" id="spec-19" name="specialist" value="neurologist-2">
+                                <label for="spec-19">Kamila Yerzhanova</label>
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>LFK (Physical Therapy) Specialist</legend>
+                            <p>
+                                <input type="radio" id="spec-20" name="specialist" value="lfk-1">
+                                <label for="spec-20">Nurbol Satybaldy</label><br>
+
+                                <input type="radio" id="spec-21" name="specialist" value="lfk-2">
+                                <label for="spec-21">Rinat Abenov</label>
+                            </p>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Neuropsychologist</legend>
+                            <p>
+                                <input type="radio" id="spec-22" name="specialist" value="neuropsychologist-1">
+                                <label for="spec-22">Askhat Dyussenov</label><br>
+
+                                <input type="radio" id="spec-23" name="specialist" value="neuropsychologist-2">
+                                <label for="spec-23">Rinat Abenov</label><br>
+
+                                <input type="radio" id="spec-24" name="specialist" value="neuropsychologist-3">
+                                <label for="spec-24">Kamila Yerzhanova</label>
+                            </p>
+                        </fieldset>
                     </fieldset>
 
                     <p>
-                        <label for="first-visit">Алғаш рет пе?</label>
+                        <label for="first-visit">First visit?</label>
                         <input type="checkbox" id="first-visit" name="first-visit">
                     </p>
 
                     <p>
-                        <label for="preferred-time">Қалаулы уақыт:</label><br>
+                        <label for="preferred-time">Preferred time:</label><br>
                         <select id="preferred-time" name="preferred-time">
-                            <option value="morning">Таңертең</option>
-                            <option value="afternoon">Түс</option>
-                            <option value="evening">Кеш</option>
+                            <option value="morning">Morning</option>
+                            <option value="afternoon">Afternoon</option>
+                            <option value="evening">Evening</option>
                         </select>
                     </p>
 
                     <p>
-                        <label for="comment">Қосымша ақпарат:</label><br>
-                        <textarea id="comment" name="comment" rows="4" placeholder="Балаңыз туралы қысқаша айтыңыз..."></textarea>
+                        <label for="comment">Additional information:</label><br>
+                        <textarea id="comment" name="comment" rows="4" placeholder="Tell us briefly about your child..."></textarea>
                     </p>
 
                     <p>
-                        <button type="submit">Жіберу</button>
-                        <button type="reset">Тазалау</button>
+                        <button type="submit">Send</button>
+                        <button type="reset">Clear</button>
                     </p>
                 </fieldset>
             </form>
         </div>
 
         <section>
-            <h2>Толық ақпарат</h2>
+            <h2>Contact us directly</h2>
             <p>
-                Сеанс бағасы туралы толығырақ <a href="specialists.html#price-table">бағалар кестесінен</a> қараңыз.
+                Prefer messaging? Reach us on WhatsApp &mdash; pick the branch you selected above:
+            </p>
+            <ul>
+                <li>Astana: <a href="https://wa.me/77478263915" target="_blank" rel="noopener">+7 747 826 39 15</a> or <a href="https://wa.me/77714542046" target="_blank" rel="noopener">+7 771 454 20 46</a></li>
+                <li>Kosshy: <a href="https://wa.me/77786584550" target="_blank" rel="noopener">+7 778 658 45 50</a></li>
+                <li>Taraz: <a href="https://wa.me/77074821698" target="_blank" rel="noopener">+7 707 482 16 98</a></li>
+            </ul>
+            <p>
+                <!-- No JavaScript is used for these links yet — they are plain wa.me addresses; an interactive chat widget will be added once JavaScript is allowed later in the course -->
+                See the full price list on the <a href="specialists.html#price-table">Specialists page</a>.
             </p>
             <p>
-                1 сеанс &asymp; 45 минут<sup>*</sup> уақытты алады.<br>
-                <small>* Кейбір қызметтер үшін уақыт өзгеруі мүмкін.</small>
+                1 session lasts &asymp; 40 minutes<sup>*</sup>.<br>
+                <small>* Duration may vary for some services.</small>
             </p>
             <p>
-                <!-- span қолдандым, өйткені абзац ішіндегі бір сөзді ерекшелеу үшін семантикалық тег жоқ, тек стильдеу мақсаты -->
-                Хабарласу үшін: <span>+7 747 826 39 15</span>
+                <!-- span used here because a single word inside a sentence needs styling only, and no semantic tag fits that -->
+                <!-- The one inline style attribute in this whole project: it only bolds
+                     this phone number and overrides nothing else on the page — inline
+                     styles win over any external or internal stylesheet rule, short of !important -->
+                To call the Astana branch directly: <span style="font-weight: 700;">+7 747 826 39 15</span>
             </p>
         </section>
     </main>
 
-    <footer>
-        <p>Мекенжай: [нақты мекенжай] | Телефон: [нақты телефон]</p>
-        <p>&copy; 2026 ШыңдАл</p>
+    <footer id="site-footer">
+        <p>Astana branch: 27/1 Ilyas Omarov Street | Phone: +7 747 826 39 15</p>
+        <p>&copy; 2026 Shindal</p>
     </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact" aria-label="Message us on WhatsApp">💬</a>
 
 </body>
 </html>
