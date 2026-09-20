@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create an account on the Shindal website to manage your bookings.">
+    <meta name="author" content="Student Name">
+    <title>Register — Shindal</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
+</head>
+<body>
+
+    <header>
+        <p>Shindal — Correction and Development Center</p>
+    </header>
+
+    <nav id="primary-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="specialists.html">Specialists</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <!-- ul used again here, separate from the main page navigation, because account links are a distinct group -->
+        <ul class="auth-nav">
+            <li><a href="register.html" class="nav-link">Register</a></li>
+            <li><a href="profile.html" class="nav-link profile-link">My Profile</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Create an account</h1>
+
+        <section>
+            <p>
+                Registering an account will let you save your child's information, see your booking
+                history and message specialists directly. This form is a visual skeleton for now &mdash;
+                it does not create a real account yet. Real accounts will be connected once
+                JavaScript and a backend are added later in the course.
+            </p>
+        </section>
+
+        <!-- div used here as a general styling container around the form, same as on the Booking page -->
+        <div>
+            <form method="POST" action="#">
+                <!-- This form does not submit anywhere yet — it is a skeleton for the registration page -->
+
+                <fieldset>
+                    <legend>Registration form</legend>
+
+                    <p>
+                        <label for="reg-name">Full name:</label><br>
+                        <input type="text" id="reg-name" name="reg-name" placeholder="e.g. Aigerim Satbayeva" required>
+                    </p>
+
+                    <p>
+                        <label for="reg-email">Email:</label><br>
+                        <input type="email" id="reg-email" name="reg-email" placeholder="example@mail.com" required>
+                    </p>
+
+                    <p>
+                        <label for="reg-phone">Phone:</label><br>
+                        <input type="tel" id="reg-phone" name="reg-phone" placeholder="+7 7XX XXX XX XX" required>
+                    </p>
+
+                    <p>
+                        <label for="reg-password">Password:</label><br>
+                        <input type="password" id="reg-password" name="reg-password" required>
+                    </p>
+
+                    <p>
+                        <label for="reg-password-confirm">Confirm password:</label><br>
+                        <input type="password" id="reg-password-confirm" name="reg-password-confirm" required>
+                    </p>
+
+                    <p>
+                        <button type="submit">Create account</button>
+                        <button type="reset">Clear</button>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+
+        <section>
+            <p>Already have an account? Go to <a href="profile.html">your profile</a>.</p>
+        </section>
+    </main>
+
+    <footer id="site-footer">
+        <p>Astana branch: 27/1 Ilyas Omarov Street | Phone: +7 747 826 39 15</p>
+        <p>&copy; 2026 Shindal</p>
+    </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact" aria-label="Message us on WhatsApp">💬</a>
+
+</body>
+</html>

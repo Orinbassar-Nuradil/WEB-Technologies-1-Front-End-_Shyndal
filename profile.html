@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your personal profile on the Shindal website.">
+    <meta name="author" content="Student Name">
+    <title>My Profile — Shindal</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
+</head>
+<body>
+
+    <header>
+        <p>Shindal — Correction and Development Center</p>
+    </header>
+
+    <nav id="primary-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="specialists.html">Specialists</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <!-- ul used again here, separate from the main page navigation, because account links are a distinct group -->
+        <ul class="auth-nav">
+            <li><a href="register.html" class="nav-link">Register</a></li>
+            <li><a href="profile.html" class="nav-link profile-link">My Profile</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>My profile</h1>
+
+        <!-- section used here, not article, because this is an introductory note about the page itself -->
+        <section>
+            <p>
+                This is a skeleton profile page with sample data. Once accounts are working with
+                JavaScript and a backend, this page will show your own name, contact details and
+                booking history instead.
+            </p>
+        </section>
+
+        <section>
+            <h2>Account details</h2>
+            <dl>
+                <dt>Full name</dt>
+                <dd>Aigerim Satbayeva</dd>
+                <dt>Email</dt>
+                <dd>aigerim.satbayeva@example.com</dd>
+                <dt>Phone</dt>
+                <dd>+7 701 234 56 78</dd>
+                <dt>Preferred branch</dt>
+                <dd>Astana</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>Booking history</h2>
+            <table>
+                <caption>Sample past and upcoming appointments</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Specialist</th>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">2026-08-14</th>
+                        <td>Dana Serikova &mdash; Speech Therapist</td>
+                        <td>Astana</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2026-09-25</th>
+                        <td>Ainur Zhumabekova &mdash; ABA Therapy</td>
+                        <td>Astana</td>
+                        <td>Upcoming</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <p><a href="booking.html">Book a new session</a></p>
+        </section>
+    </main>
+
+    <footer id="site-footer">
+        <p>Astana branch: 27/1 Ilyas Omarov Street | Phone: +7 747 826 39 15</p>
+        <p>&copy; 2026 Shindal</p>
+    </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact" aria-label="Message us on WhatsApp">💬</a>
+
+</body>
+</html>
