@@ -1,64 +1,109 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ШыңдАл Түзете-Дамыту Орталығы — логопед, дефектолог, психолог, АФК және ABA терапия қызметтері.">
-    <meta name="author" content="[Атыңызды осында жазыңыз]">
-    <title>ШыңдАл — Түзете-Дамыту Орталығы</title>
+    <meta name="description" content="Shindal Correction and Development Center — speech therapy, special education, psychology, adaptive physical education and ABA therapy for children, with branches in Astana, Kosshy and Taraz.">
+    <meta name="author" content="Student Name">
+    <title>Shindal — Correction and Development Center</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
 </head>
 <body>
-
-    <!-- Автор: [Атыңызды осында жазыңыз] -->
-
-    <!-- header сайттың барлық бетінде қайталанады, өйткені ол логотип пен сайт атын тұрақты көрсетеді -->
     <header>
-        <p>ШыңдАл — Түзете-Дамыту Орталығы</p>
+        <p>Shindal — Correction and Development Center</p>
     </header>
 
-    <!-- nav-ды header-ден бөлек, дербес тег ретінде қолдандым, өйткені ол логотиптен басқа, тек шарлау сілтемелерінің тобы -->
-    <nav>
+    <nav id="primary-nav">
         <ul>
-            <li><a href="index.html">Басты бет</a></li>
-            <li><a href="specialists.html">Мамандар</a></li>
-            <li><a href="booking.html">Жазылу</a></li>
-            <li><a href="colophon.html">Сайт туралы</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="specialists.html">Specialists</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+        <!-- ul used again here, separate from the main page navigation, because account links are a distinct group -->
+        <ul class="auth-nav">
+            <li><a href="register.html" class="nav-link">Register</a></li>
+            <li><a href="profile.html" class="nav-link profile-link">My Profile</a></li>
         </ul>
     </nav>
 
-    <main>
-        <h1>ШыңдАл Түзете-Дамыту Орталығына қош келдіңіз</h1>
+    <main class="home-main">
+        <h1>Welcome to the Shindal Correction and Development Center</h1>
 
-        <!-- section қолдандым, өйткені бұл беттің дербес тақырыптық бөлігі (орталық туралы), article емес — бұл жеке тұратын мазмұн емес -->
         <section>
-            <h2>Орталық туралы</h2>
+            <h2>About the center</h2>
             <p>
-                <!-- TODO: осында орталық туралы 150–250 сөзден тұратын өз мәтініңізді жазыңыз.
-                     Нақты деректер керек: орталықтың қашан ашылғаны, не істейтіні, кімге арналғаны. -->
-                [Мұнда ШыңдАл орталығы туралы өз сөзіңізбен жазылған нақты мәтін болуы керек.]
+                The <strong>Shindal</strong> Correction and Development Center is a specialized institution dedicated to the comprehensive development of children's speech, thinking and behavior. For <mark>6 years</mark>, Shindal has provided high-quality psychological and educational support and has already changed the lives of <strong>more than 500 children</strong>. Our main goal is to identify each child's individual needs and potential and to create the right environment for their development and active participation in society.
+            </p>
+            <p>
+                Every child works with our specialists <em>individually</em>, following a personal development program built after the first diagnostic session. Our team includes experienced speech therapists, special education teachers, psychologists, adaptive physical education (AFE) specialists and ABA-therapy professionals. Classes take place in specially equipped, safe rooms with modern teaching materials. We work closely with children who have speech delay, autism spectrum disorders, attention deficit and hyperactivity, and with their parents.
             </p>
         </section>
 
         <section>
-            <h2>Қызметтер</h2>
-            <ul>
-                <li>Логопед</li>
-                <li>Дефектолог</li>
-                <li>Психолог</li>
-                <li>АФК (Адаптивті физикалық мәдениет)</li>
-                <li>ABA терапия</li>
-                <li>Сенсорлық интеграция</li>
+            <h2>Our services</h2>
+            <ul class="service-row">
+                <li>Speech therapy</li>
+                <li>Special education (defectology)</li>
+                <li>Psychology</li>
+                <li>Adaptive physical education (AFE)</li>
+                <li>ABA therapy</li>
+                <li>Sensory integration</li>
+                <li>Neuropsychology</li>
+                <li>Neurology consultations</li>
             </ul>
+            <p>See exact prices and session length on the <a href="specialists.html#price-table">Specialists page</a>.</p>
+        </section>
+
+        <!-- section used here, not article, because this is a factual reference block (branch data) rather than a standalone publication -->
+        <section id="branches">
+            <h2>Our branches</h2>
+            <p>Shindal currently operates <strong>3 branches</strong> in 3 different cities. Each branch has its own Instagram page with photos, results and contact details.</p>
+            <table>
+                <caption>Shindal branches and locations</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Branch</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Instagram</th>
+                        <th scope="col">WhatsApp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Astana</th>
+                        <td>27/1 Ilyas Omarov Street</td>
+                        <td><a href="https://www.instagram.com/shindal_astana/" target="_blank" rel="noopener">@shindal_astana</a></td>
+                        <td><a href="https://wa.me/77478263915" target="_blank" rel="noopener">+7 747 826 39 15</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Kosshy</th>
+                        <td>21 Turar Ryskulov Street</td>
+                        <td><a href="https://www.instagram.com/shindal_kosshy/" target="_blank" rel="noopener">@shindal_kosshy</a></td>
+                        <td><a href="https://wa.me/77786584550" target="_blank" rel="noopener">+7 778 658 45 50</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Taraz</th>
+                        <td>Myngbulak microdistrict, 3</td>
+                        <td><a href="https://www.instagram.com/shindal_taraz/" target="_blank" rel="noopener">@shindal_taraz</a></td>
+                        <td><a href="https://wa.me/77074821698" target="_blank" rel="noopener">+7 707 482 16 98</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </main>
 
-    <footer>
+    <footer id="site-footer">
         <p>
-            <!-- TODO: нақты мекенжай мен телефон нөмірін қойыңыз -->
-            Мекенжай: [нақты мекенжай] | Телефон: [нақты телефон]
+            Astana branch &mdash; 27/1 Ilyas Omarov Street | Phone: <a href="tel:+77478263915">+7 747 826 39 15</a>
         </p>
-        <p>&copy; 2026 ШыңдАл</p>
+        <p>Full address list for all branches: see the table above.</p>
+        <p>&copy; 2026 Shindal</p>
     </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact" aria-label="Message us on WhatsApp">💬</a>
 
 </body>
 </html>
