@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shindal Correction and Development Center — speech therapy, special education, psychology, adaptive physical education and ABA therapy for children, with branches in Astana, Kosshy and Taraz.">
+    <meta name="author" content="Student Name">
+    <title>Shindal — Correction and Development Center</title>
+    <!-- Bootstrap 5.3.3 (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- our own stylesheets, linked AFTER Bootstrap so our brand corrections win -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-3">
+        <p class="mb-0 fs-4 fw-bold">Shindal — Correction and Development Center</p>
+    </header>
+
+    <!-- Bootstrap navbar: collapses into a working toggler below the lg
+         breakpoint. container-fluid here (not container) because the nav
+         bar, like the header above it, should span the full page width
+         edge to edge; container is used instead inside <main>, where the
+         reading content should stay a comfortable, centered column. -->
+    <nav id="primary-nav" class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-lg-none" href="index.html">Shindal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-3">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="specialists.html">Specialists</a></li>
+                    <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html">Help</a></li>
+                </ul>
+                <!-- ul used again here, separate from the main page navigation, because account links are a distinct group -->
+                <ul class="navbar-nav auth-nav gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link profile-link" href="profile.html">My Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <div class="row align-items-center mb-4 g-3">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold text-center text-lg-start">Welcome to the Shindal Correction and Development Center</h1>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <!-- real link styled as a Bootstrap button (size variant: btn-lg) -->
+                <a href="booking.html" class="btn btn-warning btn-lg">Book a session</a>
+            </div>
+        </div>
+
+        <section class="row g-4 mb-5">
+            <div class="col-lg-8">
+                <h2>About the center</h2>
+                <p class="lead">
+                    The <strong>Shindal</strong> Correction and Development Center is a specialized institution dedicated to the comprehensive development of children's speech, thinking and behavior. For <mark>6 years</mark>, Shindal has provided high-quality psychological and educational support and has already changed the lives of <strong>more than 500 children</strong>. Our main goal is to identify each child's individual needs and potential and to create the right environment for their development and active participation in society.
+                </p>
+                <p>
+                    Every child works with our specialists <em>individually</em>, following a personal development program built after the first diagnostic session. Our team includes experienced speech therapists, special education teachers, psychologists, adaptive physical education (AFE) specialists and ABA-therapy professionals. Classes take place in specially equipped, safe rooms with modern teaching materials. We work closely with children who have speech delay, autism spectrum disorders, attention deficit and hyperactivity, and with their parents.
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <!-- Nested row: a small 2-column stat grid living inside this
+                     single outer column — the "row inside a column" requirement -->
+                <div class="row row-cols-2 g-2 text-center">
+                    <div class="col">
+                        <div class="border rounded-3 p-3 h-100 bg-white shadow-sm">
+                            <span class="display-6 fw-bold text-primary">6</span><br>
+                            <small class="text-muted">years open</small>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="border rounded-3 p-3 h-100 bg-white shadow-sm">
+                            <span class="display-6 fw-bold text-primary">500+</span><br>
+                            <small class="text-muted">children helped</small>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="border rounded-3 p-3 h-100 bg-white shadow-sm">
+                            <span class="display-6 fw-bold text-primary">3</span><br>
+                            <small class="text-muted">branches</small>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="border rounded-3 p-3 h-100 bg-white shadow-sm">
+                            <span class="display-6 fw-bold text-primary">8</span><br>
+                            <small class="text-muted">services</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2>Our services</h2>
+            <!-- Responsive block #1: 1 column on a phone, 2 on a tablet,
+                 4 on a desktop — built with Bootstrap cards + row-cols -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+                <div class="col"><div class="card h-100 shadow-sm border-primary"><div class="card-body"><h3 class="h6 card-title mb-0">Speech therapy</h3></div></div></div>
+                <div class="col"><div class="card h-100 shadow-sm"><div class="card-body"><h3 class="h6 card-title mb-0">Special education (defectology)</h3></div></div></div>
+                <div class="col"><div class="card h-100 shadow-sm"><div class="card-body"><h3 class="h6 card-title mb-0">Psychology</h3></div></div></div>
+                <div class="col"><div class="card h-100 shadow-sm"><div class="card-body"><h3 class="h6 card-title mb-0">Adaptive physical education (AFE)</h3></div></div></div>
+                <div class="col"><div class="card h-100 shadow-sm"><div class="card-body"><h3 class="h6 card-title mb-0">ABA therapy</h3></div></div></div>
+                <div class="col"><div class="card h-100 shadow-sm"><div class="card-body"><h3 class="h6 card-title mb-0">Sensory integration</h3></div></div></div>
+                <div class="col"><div class="card h-100 shadow-sm"><div class="card-body"><h3 class="h6 card-title mb-0">Neuropsychology</h3></div></div></div>
+                <div class="col"><div class="card h-100 shadow-sm"><div class="card-body"><h3 class="h6 card-title mb-0">Neurology consultations</h3></div></div></div>
+            </div>
+            <p class="mt-3">See exact prices and session length on the <a href="specialists.html#price-table">Specialists page</a>.</p>
+        </section>
+
+        <!-- section used here, not article, because this is a factual reference block (branch data) rather than a standalone publication -->
+        <section id="branches" class="mb-4">
+            <h2>Our branches</h2>
+            <p>Shindal currently operates <strong>3 branches</strong> in 3 different cities. Each branch has its own Instagram page with photos, results and contact details.</p>
+            <!-- table-responsive: the table gets its own horizontal scroller
+                 instead of ever pushing the page itself wider than the
+                 viewport at 375px -->
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <caption>Shindal branches and locations</caption>
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Branch</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Instagram</th>
+                            <th scope="col">WhatsApp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Astana</th>
+                            <td>27/1 Ilyas Omarov Street</td>
+                            <td><a href="https://www.instagram.com/shindal_astana/" target="_blank" rel="noopener">@shindal_astana</a></td>
+                            <td><a href="https://wa.me/77478263915" target="_blank" rel="noopener">+7 747 826 39 15</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Kosshy</th>
+                            <td>21 Turar Ryskulov Street</td>
+                            <td><a href="https://www.instagram.com/shindal_kosshy/" target="_blank" rel="noopener">@shindal_kosshy</a></td>
+                            <td><a href="https://wa.me/77786584550" target="_blank" rel="noopener">+7 778 658 45 50</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taraz</th>
+                            <td>Myngbulak microdistrict, 3</td>
+                            <td><a href="https://www.instagram.com/shindal_taraz/" target="_blank" rel="noopener">@shindal_taraz</a></td>
+                            <td><a href="https://wa.me/77074821698" target="_blank" rel="noopener">+7 707 482 16 98</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer id="site-footer" class="bg-primary text-white text-center py-4">
+        <p class="mb-1">
+            Astana branch &mdash; 27/1 Ilyas Omarov Street | Phone: <a href="tel:+77478263915" class="link-light">+7 747 826 39 15</a>
+        </p>
+        <p class="mb-1 small">Full address list for all branches: see the table above.</p>
+        <p class="mb-0 small">&copy; 2026 Shindal</p>
+    </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact position-fixed rounded-circle d-flex align-items-center justify-content-center" aria-label="Message us on WhatsApp">💬</a>
+
+    <!-- Bootstrap 5.3.3 bundle (Popper + JS) — needed for the navbar toggler -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

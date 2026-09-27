@@ -1,0 +1,29 @@
+/* =============================================================================
+   student.css — personal stylesheet (Assignment 3)
+   Linked SECOND, after base.css. Almost everything that used to live here in
+   Assignment 2 — the CSS grid on the homepage, the flex service list, the
+   float/clear pair, the specificity experiment, the !important badge, the
+   date/time input styling, the table row highlights — is now built with
+   Bootstrap classes directly in the HTML instead (grid/row/col, card,
+   float-md-start + clearfix, table-warning/table-success, .badge, form-control).
+   See removed-css.md for the full before -> after list.
+
+   >>> Rename this file to your own name before submitting (e.g. aigerim.css)
+   >>> and update the <link href="css/student.css"> line on every page.
+   ============================================================================= */
+
+/* The one rule left in this file: a brand-colour correction on the
+   "currently signed up for" line on the Profile page. Not a Bootstrap
+   text-color utility because it needs the exact brand plum, not the
+   remapped --bs-primary used everywhere else (keeps this one line
+   independent of any future palette override). */
+.profile-highlight {
+    color: #7d3b78;
+}
+
+/* Fixed width for the floated speech-therapist photo on Specialists — no
+   Bootstrap width utility gives this exact size, and this is cheaper than
+   an inline style="" attribute (which costs points in Assignment 3). */
+.specialist-figure {
+    width: 140px;
+}

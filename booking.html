@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online booking form for the Shindal Correction and Development Center.">
+    <meta name="author" content="Student Name">
+    <title>Booking — Shindal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
+</head>
+<body>
+
+    <header class="bg-primary text-white text-center py-3">
+        <p class="mb-0 fs-4 fw-bold">Shindal — Correction and Development Center</p>
+    </header>
+
+    <nav id="primary-nav" class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-lg-none" href="index.html">Shindal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="specialists.html">Specialists</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="booking.html">Booking</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html">Help</a></li>
+                </ul>
+                <ul class="navbar-nav auth-nav gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link profile-link" href="profile.html">My Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <h1 class="display-5 fw-bold text-center text-lg-start">Book an appointment</h1>
+
+        <section class="row align-items-center g-4 mb-4">
+            <div class="col-lg-8">
+                <p>
+                    Booking an appointment with a Shindal specialist is simple and convenient. Fill in the online form below to request a session. Our administrators review every request quickly and will contact you by phone or messenger to confirm a time that works for you.
+                </p>
+                <p class="mb-0">
+                    Please provide the parent's full name, a contact phone number, the child's age and the specialist you need. If this is your first visit to our center, we will first schedule a comprehensive diagnostic session. This helps us assess the child's developmental level and plan the following sessions correctly.
+                </p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <figure class="mb-0">
+                    <img src="Shindal 2.jpeg" alt="Exterior view of the Shindal center building" class="img-fluid rounded shadow-sm">
+                    <figcaption class="small text-muted">The Shindal center building</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- div used here as a general styling container around the form; header, nav, main, section, article and footer don't carry the meaning of a form wrapper. The width is now constrained by the Bootstrap grid (col-lg-8, centered) instead of a hand-written .form-card max-width rule. -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-9">
+                <div class="card shadow-sm p-4">
+                    <form method="POST" action="#">
+                        <!-- This form does not submit anywhere yet — server-side handling will be added in a later stage of the course -->
+
+                        <fieldset>
+                            <legend class="h4">Appointment booking form</legend>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="fullname" class="form-label">Your full name:</label>
+                                    <input type="text" id="fullname" name="fullname" class="form-control" placeholder="e.g. Aigerim Satbayeva" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email:</label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="example@mail.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone:</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="+7 7XX XXX XX XX" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="child-age" class="form-label">Child's age:</label>
+                                    <input type="number" id="child-age" name="child-age" class="form-control" min="1" max="18" placeholder="e.g. 5">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="visit-date" class="form-label">Preferred date:</label>
+                                    <input type="date" id="visit-date" name="visit-date" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="branch" class="form-label">Branch:</label>
+                                    <select id="branch" name="branch" class="form-select">
+                                        <option value="astana">Astana</option>
+                                        <option value="kosshy">Kosshy</option>
+                                        <option value="taraz">Taraz</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <fieldset class="mt-4">
+                                <legend class="h5">Specialist</legend>
+                                <!-- One person can appear in more than one specialty group below (e.g. a specialist who works
+                                     both as a speech therapist and a special education teacher). Each radio still shares the
+                                     same "specialist" name, so only one specific person can be picked across the whole form. -->
+                                <p class="fst-italic text-muted">First choose a specialty below, then choose the specialist's name inside it.</p>
+
+                                <!-- Nested row: a card grid living inside this fieldset, which is
+                                     itself inside the form's single outer grid column -->
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">Speech Therapist</legend>
+                                            <div class="form-check"><input type="radio" id="spec-1" name="specialist" value="speech-therapist-1" class="form-check-input"><label for="spec-1" class="form-check-label">Yerlan Zhaksybekov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-2" name="specialist" value="speech-therapist-2" class="form-check-input"><label for="spec-2" class="form-check-label">Aigerim Nurlankyzy</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-3" name="specialist" value="speech-therapist-3" class="form-check-input"><label for="spec-3" class="form-check-label">Dana Serikova</label></div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">Special Education Teacher</legend>
+                                            <div class="form-check"><input type="radio" id="spec-4" name="specialist" value="special-education-1" class="form-check-input"><label for="spec-4" class="form-check-label">Yerlan Zhaksybekov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-5" name="specialist" value="special-education-2" class="form-check-input"><label for="spec-5" class="form-check-label">Timur Akhmetov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-6" name="specialist" value="special-education-3" class="form-check-input"><label for="spec-6" class="form-check-label">Gulnara Ospanova</label></div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">Psychologist</legend>
+                                            <div class="form-check"><input type="radio" id="spec-7" name="specialist" value="psychologist-1" class="form-check-input"><label for="spec-7" class="form-check-label">Dana Serikova</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-8" name="specialist" value="psychologist-2" class="form-check-input"><label for="spec-8" class="form-check-label">Askhat Dyussenov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-9" name="specialist" value="psychologist-3" class="form-check-input"><label for="spec-9" class="form-check-label">Madina Kairatkyzy</label></div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">Adaptive Physical Education (AFE)</legend>
+                                            <div class="form-check"><input type="radio" id="spec-10" name="specialist" value="afe-1" class="form-check-input"><label for="spec-10" class="form-check-label">Nurbol Satybaldy</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-11" name="specialist" value="afe-2" class="form-check-input"><label for="spec-11" class="form-check-label">Zhanna Tolegenova</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-12" name="specialist" value="afe-3" class="form-check-input"><label for="spec-12" class="form-check-label">Bekzat Assanov</label></div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">ABA Therapy</legend>
+                                            <div class="form-check"><input type="radio" id="spec-13" name="specialist" value="aba-1" class="form-check-input"><label for="spec-13" class="form-check-label">Timur Akhmetov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-14" name="specialist" value="aba-2" class="form-check-input"><label for="spec-14" class="form-check-label">Ainur Zhumabekova</label></div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">Sensory Integration</legend>
+                                            <div class="form-check"><input type="radio" id="spec-15" name="specialist" value="sensory-1" class="form-check-input"><label for="spec-15" class="form-check-label">Ainur Zhumabekova</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-16" name="specialist" value="sensory-2" class="form-check-input"><label for="spec-16" class="form-check-label">Damir Nurlanov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-17" name="specialist" value="sensory-3" class="form-check-input"><label for="spec-17" class="form-check-label">Saya Bekova</label></div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">Neurologist Consultation</legend>
+                                            <div class="form-check"><input type="radio" id="spec-18" name="specialist" value="neurologist-1" class="form-check-input"><label for="spec-18" class="form-check-label">Rinat Abenov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-19" name="specialist" value="neurologist-2" class="form-check-input"><label for="spec-19" class="form-check-label">Kamila Yerzhanova</label></div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">LFK (Physical Therapy) Specialist</legend>
+                                            <div class="form-check"><input type="radio" id="spec-20" name="specialist" value="lfk-1" class="form-check-input"><label for="spec-20" class="form-check-label">Nurbol Satybaldy</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-21" name="specialist" value="lfk-2" class="form-check-input"><label for="spec-21" class="form-check-label">Rinat Abenov</label></div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col">
+                                        <fieldset class="spec-group card p-3 h-100">
+                                            <legend class="h6">Neuropsychologist</legend>
+                                            <div class="form-check"><input type="radio" id="spec-22" name="specialist" value="neuropsychologist-1" class="form-check-input"><label for="spec-22" class="form-check-label">Askhat Dyussenov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-23" name="specialist" value="neuropsychologist-2" class="form-check-input"><label for="spec-23" class="form-check-label">Rinat Abenov</label></div>
+                                            <div class="form-check"><input type="radio" id="spec-24" name="specialist" value="neuropsychologist-3" class="form-check-input"><label for="spec-24" class="form-check-label">Kamila Yerzhanova</label></div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <div class="row g-3 mt-1">
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="first-visit" name="first-visit" class="form-check-input">
+                                        <label for="first-visit" class="form-check-label">First visit?</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="preferred-time" class="form-label">Preferred time:</label>
+                                    <select id="preferred-time" name="preferred-time" class="form-select">
+                                        <option value="morning">Morning</option>
+                                        <option value="afternoon">Afternoon</option>
+                                        <option value="evening">Evening</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="comment" class="form-label">Additional information:</label>
+                                    <textarea id="comment" name="comment" class="form-control" rows="4" placeholder="Tell us briefly about your child..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 d-flex flex-wrap gap-2">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                                <!-- outline variant -->
+                                <button type="reset" class="btn btn-outline-secondary">Clear</button>
+                                <!-- disabled state: a real button, not decoration, just not wired up yet -->
+                                <button type="button" class="btn btn-outline-primary" disabled>Save as draft (coming soon)</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <h2>Contact us directly</h2>
+            <p>
+                Prefer messaging? Reach us on WhatsApp &mdash; pick the branch you selected above:
+            </p>
+            <ul>
+                <li>Astana: <a href="https://wa.me/77478263915" target="_blank" rel="noopener">+7 747 826 39 15</a> or <a href="https://wa.me/77714542046" target="_blank" rel="noopener">+7 771 454 20 46</a></li>
+                <li>Kosshy: <a href="https://wa.me/77786584550" target="_blank" rel="noopener">+7 778 658 45 50</a></li>
+                <li>Taraz: <a href="https://wa.me/77074821698" target="_blank" rel="noopener">+7 707 482 16 98</a></li>
+            </ul>
+            <p>
+                <!-- No JavaScript is used for these links yet — they are plain wa.me addresses; an interactive chat widget will be added once JavaScript is allowed later in the course -->
+                See the full price list on the <a href="specialists.html#price-table">Specialists page</a>.
+            </p>
+            <p>
+                1 session lasts &asymp; 40 minutes<sup>*</sup>.<br>
+                <small class="text-muted">* Duration may vary for some services.</small>
+            </p>
+            <p class="mb-0">
+                <!-- span used here because a single word inside a sentence needs styling only, and no semantic tag fits that.
+                     The one inline style from Assignment 2 is gone: fw-bold is a Bootstrap utility class,
+                     and the assignment 3 rules charge points for inline style="" attributes. -->
+                To call the Astana branch directly: <span class="fw-bold">+7 747 826 39 15</span>
+            </p>
+        </section>
+    </main>
+
+    <footer id="site-footer" class="bg-primary text-white text-center py-4">
+        <p class="mb-1 small">Astana branch: 27/1 Ilyas Omarov Street | Phone: +7 747 826 39 15</p>
+        <p class="mb-0 small">&copy; 2026 Shindal</p>
+    </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact position-fixed rounded-circle d-flex align-items-center justify-content-center" aria-label="Message us on WhatsApp">💬</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

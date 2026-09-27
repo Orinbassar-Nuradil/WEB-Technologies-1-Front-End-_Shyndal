@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parent reviews of the Shindal Correction and Development Center.">
+    <meta name="author" content="Student Name">
+    <title>Reviews — Shindal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student.css">
+    <!-- The internal <style> block from Assignment 2 (an aside border-color
+         override, just to demonstrate the cascade) has been removed: the
+         same "different colour on this one page only" effect is now done
+         with a Bootstrap utility class (border-warning) added directly to
+         this page's <aside> below, so no hand-written CSS is needed for it
+         at all. See removed-css.md. -->
+</head>
+<body>
+
+
+    <header class="bg-primary text-white text-center py-3">
+        <p class="mb-0 fs-4 fw-bold">Shindal — Correction and Development Center</p>
+    </header>
+
+    <nav id="primary-nav" class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-lg-none" href="index.html">Shindal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="specialists.html">Specialists</a></li>
+                    <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="reviews.html">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="help.html">Help</a></li>
+                </ul>
+                <ul class="navbar-nav auth-nav gap-lg-3">
+                    <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link profile-link" href="profile.html">My Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4">
+        <h1 class="display-5 fw-bold text-center text-lg-start">What parents say</h1>
+
+        <section class="row justify-content-center mb-3">
+            <div class="col-lg-9">
+                <p>
+                    Over the years, Shindal has worked with hundreds of families across our Astana, Kosshy and Taraz branches. Below is a review shared by one of our parents. More reviews from families at each branch can be found on the branch's own Instagram page, linked on the <a href="index.html#branches">Home page</a>.
+                </p>
+            </div>
+        </section>
+
+        <!-- aside used because a testimonial is supplementary to the main page content, not the primary subject of the page.
+             border-warning gives this page's testimonial box the gold border, instead of the internal <style> block used in Assignment 2.
+             The box's width is constrained by the Bootstrap grid column below (col-lg-6), not an inline style. -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-8 col-lg-6">
+                <aside class="d-flex flex-column align-items-center text-center border border-warning rounded-3 p-4 bg-white">
+                    <blockquote cite="https://www.instagram.com/shindal_astana/" class="mb-2">
+                        Since we started coming to the center, my child's speech and behavior have changed for the better in a huge way. I am endlessly grateful for the specialists' professionalism and patience!
+                    </blockquote>
+                    <p class="mb-0">— <cite>Aigerim Maratkyzy, May 12, 2025</cite></p>
+                </aside>
+            </div>
+        </div>
+
+        <section class="row justify-content-center">
+            <div class="col-lg-9">
+                <h2 class="h4">Share your experience</h2>
+                <p>
+                    If your child attends Shindal, we would love to hear from you. Message us on
+                    <a href="https://wa.me/77478263915" target="_blank" rel="noopener">WhatsApp</a>
+                    or write to us <a href="mailto:shindal.astana@gmail.com">by email</a>.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="site-footer" class="bg-primary text-white text-center py-4">
+        <p class="mb-1 small">Astana branch: 27/1 Ilyas Omarov Street | Phone: +7 747 826 39 15</p>
+        <p class="mb-0 small">&copy; 2026 Shindal</p>
+    </footer>
+
+    <a href="https://wa.me/77478263915" target="_blank" rel="noopener" class="floating-contact position-fixed rounded-circle d-flex align-items-center justify-content-center" aria-label="Message us on WhatsApp">💬</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
