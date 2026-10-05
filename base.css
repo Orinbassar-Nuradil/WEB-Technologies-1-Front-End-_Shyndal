@@ -1,0 +1,6 @@
+/* base.css — brand palette remapped onto Bootstrap 5.3.3 variables */
+:root{--bs-primary:#6b2d73;--bs-primary-rgb:107,45,115;--bs-body-bg:#fbf4f7;--bs-body-color:#2b1a2e;--bs-link-color:#6b2d73;--bs-link-color-rgb:107,45,115;--bs-link-hover-color:#3d1a42;--bs-link-hover-color-rgb:61,26,66;--bs-border-radius:.75rem;--brand-soft:#f1e3f3;--brand-accent:#e9a23b}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+h1,h2,h3,h4,.navbar-brand{font-family:"Poppins","Segoe UI",system-ui,sans-serif}
+.btn-brand{--bs-btn-color:#fff;--bs-btn-bg:#6b2d73;--bs-btn-border-color:#6b2d73;--bs-btn-hover-color:#fff;--bs-btn-hover-bg:#3d1a42;--bs-btn-hover-border-color:#3d1a42;--bs-btn-active-bg:#3d1a42;--bs-btn-active-border-color:#3d1a42;--bs-btn-disabled-bg:#6b2d73;--bs-btn-disabled-border-color:#6b2d73;border-radius:2rem}
+.btn-outline-brand{--bs-btn-color:#6b2d73;--bs-btn-border-color:#6b2d73;--bs-btn-hover-bg:#6b2d73;--bs-btn-hover-border-color:#6b2d73;--bs-btn-hover-color:#fff;--bs-btn-active-bg:#3d1a42;--bs-btn-active-color:#fff;border-radius:2rem}

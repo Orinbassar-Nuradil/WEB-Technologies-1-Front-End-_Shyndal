@@ -1,0 +1,39 @@
+/* main.css — small correction layer: look of the Shindal design + state classes for JavaScript */
+.navbar{background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--brand-soft)}
+.brand-logo{font-weight:800;font-size:1.6rem;color:#6b2d73;font-style:italic;letter-spacing:.02em}
+.brand-sub{font-size:.7rem;color:#6b2d73;font-weight:500}
+.navbar .nav-link{color:#2b1a2e;font-size:.95rem}
+.navbar .nav-link.active,.navbar .nav-link:hover{color:#6b2d73;font-weight:600}
+.page-lead{max-width:42rem}
+.eyebrow{color:#6b2d73;font-weight:700;margin-bottom:.25rem}
+.hero{background:linear-gradient(135deg,#f6e6f4,#fbf4f7);border-radius:1.5rem;padding:1.5rem;margin-top:.5rem}
+.section-title{font-weight:700;margin-bottom:1rem}
+.soft-card{background:#fff;border:1px solid var(--brand-soft);border-radius:1rem;box-shadow:0 2px 8px rgba(107,45,115,.06)}
+.service-card{background:#fff;border:1px solid var(--brand-soft);border-radius:1rem;overflow:hidden;color:inherit;transition:box-shadow .2s}
+.service-card:hover{box-shadow:0 6px 18px rgba(107,45,115,.18)}
+.service-card .card-img-top{aspect-ratio:4/3;object-fit:cover}
+.arrow{display:inline-flex;width:1.7rem;height:1.7rem;align-items:center;justify-content:center;border-radius:50%;background:#6b2d73;color:#fff;font-size:.9rem;flex:none}
+.soft-card .card-img-top{aspect-ratio:4/3;object-fit:cover;border-radius:1rem 1rem 0 0}
+.stat-box{background:#fff;border:1px solid var(--brand-soft);border-radius:1rem;padding:1rem;height:100%}
+.stat-box span{display:block;color:#6b6070;font-size:.9rem}
+.stat-box .stat-num{color:#6b2d73;font-size:1.8rem;font-weight:800}
+.review-img{aspect-ratio:3/4;object-fit:cover}
+#review-video{width:100%;height:100%}
+.steps{padding-left:1.2rem}.steps li{margin-bottom:.5rem}
+.cta-band{background:linear-gradient(135deg,#6b2d73,#8e4b96);margin-top:2rem}
+#site-footer{background:#fff;border-top:1px solid var(--brand-soft)}
+.social-link{color:#6b2d73;font-weight:600;text-decoration:none;font-size:.9rem}
+.floating-contact{bottom:1.25rem;right:1.25rem;width:3rem;height:3rem;background:var(--brand-accent);color:#3d1a42;font-size:1.3rem;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,.3);z-index:1030}
+.avatar-circle{width:5rem;height:5rem;border:2px dashed var(--brand-accent);font-size:2.1rem;background:var(--brand-soft)}
+.nav-tabs .nav-link{color:#6b2d73}
+.accordion-button:not(.collapsed){background:var(--brand-soft);color:#3d1a42}
+img,video,iframe{max-width:100%}
+/* ---- state classes: JavaScript will only switch these on and off ---- */
+.hidden{display:none!important}
+.active-item,.selected{outline:2px solid #6b2d73;background:var(--brand-soft)}
+.error{border-color:#dc3545!important;color:#b02a37}
+input.error,select.error,textarea.error{box-shadow:0 0 0 .2rem rgba(220,53,69,.2)}
+.success{border-color:#198754!important;color:#146c43}
+.error-message{color:#b02a37;font-size:.85rem;margin-top:.25rem}
+.disabled-item{opacity:.55;pointer-events:none}
+.highlight{background:#fff3cd}
