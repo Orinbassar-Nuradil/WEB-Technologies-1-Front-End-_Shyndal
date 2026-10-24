@@ -1,0 +1,310 @@
+{
+  "repository": "https://github.com/Orinbassar-Nuradil/WEB-Technologies-1-Front-End-_Shyndal",
+  "checked_date": "2026-10-24",
+  "head": "6b460fd7bb2947756940fcb6a1a85256f1eafe3a",
+  "commits": [
+    {
+      "sha": "6b460fd7bb2947756940fcb6a1a85256f1eafe3a",
+      "date": "2026-10-05T08:33:32Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Add files via upload"
+    },
+    {
+      "sha": "75507fd97b7f6a56397a8231493f50a6a292d0ff",
+      "date": "2026-10-05T08:32:43Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete student.css"
+    },
+    {
+      "sha": "95cbd12bba23c4342b71f68b492e43e4772140c2",
+      "date": "2026-10-05T08:32:35Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete specialists.html"
+    },
+    {
+      "sha": "5de3bc75c1762124f4854b5be586887ccef5c1c0",
+      "date": "2026-10-05T08:32:25Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete reviews.html"
+    },
+    {
+      "sha": "6457ac07d9022001248a5b52aec3fefa2e528573",
+      "date": "2026-10-05T08:32:06Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete removed-css.md"
+    },
+    {
+      "sha": "69c437d7da0063425857a391413db650f82fbb6e",
+      "date": "2026-10-05T08:31:51Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete register.html"
+    },
+    {
+      "sha": "c1663b421524ac21b66726ee41081942640dae5f",
+      "date": "2026-10-05T08:31:44Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete profile.html"
+    },
+    {
+      "sha": "8e7ac2cd9ca32ed37f5023c4b2670c1afcbeba45",
+      "date": "2026-10-05T08:31:36Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete index.html"
+    },
+    {
+      "sha": "4031b92f291cc6483cd0559760becede23a838cb",
+      "date": "2026-10-05T08:31:27Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete help.html"
+    },
+    {
+      "sha": "22c0b7e5063434f07cbab2263865530d561da413",
+      "date": "2026-10-05T08:31:13Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete css-checklist.md"
+    },
+    {
+      "sha": "3d479ba3c006c37137bbc4d3c1306e31f458f57b",
+      "date": "2026-10-05T08:31:03Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete booking.html"
+    },
+    {
+      "sha": "bd80fd48ed1c172094236c721f98b7361e9969f3",
+      "date": "2026-10-05T08:30:55Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete base.css"
+    },
+    {
+      "sha": "c09ac6952ad888a8d982a3bb602118124d34f360",
+      "date": "2026-10-05T08:30:39Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete README.md"
+    },
+    {
+      "sha": "73d9687ce4dc74b3f58f914448d0d7095480982d",
+      "date": "2026-10-05T08:30:13Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete AI-log.md"
+    },
+    {
+      "sha": "e4df9478e64ea07aeb23d3e4b70eebd984d82276",
+      "date": "2026-09-27T15:37:27Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Add files via upload"
+    },
+    {
+      "sha": "c549786f30276f83c1525ad5f113e3e3eee46358",
+      "date": "2026-09-27T15:34:43Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete student.css"
+    },
+    {
+      "sha": "5bf354e559c71c40e55f3590e4ea4fc52d9e18b0",
+      "date": "2026-09-27T15:34:33Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete reviews.html"
+    },
+    {
+      "sha": "7e4f73d9ac82ff5f1492fdf9aa7e2c44792cc044",
+      "date": "2026-09-27T15:34:26Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete register.html"
+    },
+    {
+      "sha": "a0b2285cdda3e4a7c40d8159616f31a4c5ca1293",
+      "date": "2026-09-27T15:34:17Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete profile.html"
+    },
+    {
+      "sha": "19217a11a6417fc07d43adb9a138f9e9e7cb77c7",
+      "date": "2026-09-27T15:34:09Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete index.html"
+    },
+    {
+      "sha": "004cd3f855dfa67fa05e17a30c47062228435ac6",
+      "date": "2026-09-27T15:34:01Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete help.html"
+    },
+    {
+      "sha": "9234e8845fbcf59c5f48b53dbde34d32848031d5",
+      "date": "2026-09-27T15:33:51Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete base.css"
+    },
+    {
+      "sha": "3587e3db47e161edf331cfe0c7139f4c2bbef331",
+      "date": "2026-09-27T15:33:37Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete Specialists.html"
+    },
+    {
+      "sha": "1af2be43159490c4b29394a8fd7efa27da04fca2",
+      "date": "2026-09-27T15:33:14Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete Booking.html"
+    },
+    {
+      "sha": "d1c3fa07113b6948245b39cc49fee1d5d39e8f1b",
+      "date": "2026-09-20T18:41:09Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Add files via upload"
+    },
+    {
+      "sha": "ec3cc319291b1608a3c383fa2d67671a8274cb63",
+      "date": "2026-09-20T18:38:31Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Delete colophon.html"
+    },
+    {
+      "sha": "929003ce7edf2977f162a8c2d97515c749f73781",
+      "date": "2026-09-20T18:36:52Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Add files via upload"
+    },
+    {
+      "sha": "a0076664ae9f439183cc0392fa40ea432d8368ca",
+      "date": "2026-09-20T18:36:05Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "help.html"
+    },
+    {
+      "sha": "99a977946aab01c6ecf087e93062ce23bebefa49",
+      "date": "2026-09-20T18:35:16Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Create reviews.html"
+    },
+    {
+      "sha": "d9e4de64df3acffe1147ac6c91de9ddac12cef21",
+      "date": "2026-09-20T18:26:03Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "README.md"
+    },
+    {
+      "sha": "45cd63191c29a4890037267abcfe8005d2403241",
+      "date": "2026-09-20T18:08:05Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "reviews.html"
+    },
+    {
+      "sha": "365abf1ddfb6fb98d1308f66bc983bcd3fe72524",
+      "date": "2026-09-20T18:07:17Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Booking.html"
+    },
+    {
+      "sha": "4bc50b9e685e9ba55e5619ffe3b42889ee546988",
+      "date": "2026-09-20T18:06:45Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Specialists.html"
+    },
+    {
+      "sha": "0515f19c93fec50e90dd0d5160f703f960b5a103",
+      "date": "2026-09-20T18:06:12Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Update index.html"
+    },
+    {
+      "sha": "b4f0f3da3fa3a941c5c9e25b8bb21e9f26ac4c71",
+      "date": "2026-09-13T20:18:44Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Add files via upload"
+    },
+    {
+      "sha": "6f2386a42ccce0b8a6ea40912812e6ea3fff9028",
+      "date": "2026-09-13T17:04:41Z",
+      "author": "Orinbassar-Nuradil",
+      "message": "Initial commit"
+    }
+  ],
+  "tree": [
+    {
+      "path": "AI-log.md",
+      "type": "blob",
+      "sha": "6ab34279149585e2387af93f61e2bc52c72a29b2",
+      "size": 249
+    },
+    {
+      "path": "README.md",
+      "type": "blob",
+      "sha": "5f2a6b47c3bcba4b18a8ffc7e567c2e79262788b",
+      "size": 2817
+    },
+    {
+      "path": "about.html",
+      "type": "blob",
+      "sha": "e03b3cb05370a080a2f912a1920380e958666f0d",
+      "size": 7654
+    },
+    {
+      "path": "base.css",
+      "type": "blob",
+      "sha": "489d5b740fe44466ce107a073f8fb9df5278f66c",
+      "size": 1077
+    },
+    {
+      "path": "booking.html",
+      "type": "blob",
+      "sha": "9385ec3c8e129ad2c95bae100d994afb6fdb4e1f",
+      "size": 11485
+    },
+    {
+      "path": "help.html",
+      "type": "blob",
+      "sha": "6621a8c2348f488e302c2a775ab815e987d93083",
+      "size": 11919
+    },
+    {
+      "path": "index.html",
+      "type": "blob",
+      "sha": "fbdf5edc26f561779fdbf7f2acc6e30c869240bf",
+      "size": 11644
+    },
+    {
+      "path": "login.html",
+      "type": "blob",
+      "sha": "1fd3eb0780d8b1948e6afb7977b065a65c8a09d6",
+      "size": 5874
+    },
+    {
+      "path": "main.css",
+      "type": "blob",
+      "sha": "2ddce0bb1ce091d20503d90de16f754e95be97da",
+      "size": 2999
+    },
+    {
+      "path": "profile.html",
+      "type": "blob",
+      "sha": "df26567656630bfcc842dfaed01bf3ccbe23a087",
+      "size": 6912
+    },
+    {
+      "path": "register.html",
+      "type": "blob",
+      "sha": "2e9627b2c100e1241bf38f8de2fba9e79698ca7e",
+      "size": 7472
+    },
+    {
+      "path": "reviews.html",
+      "type": "blob",
+      "sha": "c0235b70f972d31e2349ab007ca83e672a117db0",
+      "size": 9947
+    },
+    {
+      "path": "services.html",
+      "type": "blob",
+      "sha": "e37aee74d098599b8bfa9f0d45bc597a8dfc7c42",
+      "size": 9595
+    },
+    {
+      "path": "specialists.html",
+      "type": "blob",
+      "sha": "988ca557f7fb82717074d6d53a636aee63c7def5",
+      "size": 10056
+    }
+  ],
+  "tags": []
+}
