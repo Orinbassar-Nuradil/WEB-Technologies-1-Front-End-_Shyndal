@@ -1,0 +1,1 @@
+{"private":true,"description":"Development-only DOM tests; never loaded by the site","scripts":{"test":"node jquery-dom.cjs"},"dependencies":{"jsdom":"26.1.0"}}

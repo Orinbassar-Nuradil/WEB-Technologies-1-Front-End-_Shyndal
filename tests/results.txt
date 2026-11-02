@@ -1,37 +1,20 @@
-Verification run: 2026-10-25 Asia/Almaty
-
-$ node tests/freeze.cjs
-PASS: 12 Midterm HTML/CSS files match exactly, excluding added defer script links.
-
-$ node tests/source-audit.cjs
-PASS: frontend syntax, strict mode, no loose equality/var/inline events/unsafe HTML/styles/eval, existing CSS only, deferred scripts.
-
-$ node tests/logic.cjs
-PASS: preserved four-week booking, totals, date/week restrictions, branch staff, all hourly starts, invalid dates and leap-year boundaries.
-
-$ node tests/dom-integration.cjs
-LOAD PASS index 9 unique IDs
-LOAD PASS about 9 unique IDs
-LOAD PASS services 18 unique IDs
-LOAD PASS specialists 11 unique IDs
-LOAD PASS reviews 17 unique IDs
-LOAD PASS help 27 unique IDs
-LOAD PASS profile 22 unique IDs
-LOAD PASS register 13 unique IDs
-LOAD PASS login 8 unique IDs
-LOAD PASS booking 26 unique IDs
-FLOW PASS booking: four lessons, correct calendar weeks, total, submission, duplicates, dependency reset
-FLOW PASS single booking: Sunday closed, Saturday morning, all afternoon starts
-FLOW PASS register: standalone/back, field focus, matching password, accessible eye, no password storage
-FLOW PASS login: standalone/back, validation only, no fake authentication
-FLOW PASS catalogue/cart: connected controls, empty result, add/increase/checkout/clear
-FLOW PASS reviews: validated local submission, shared renderer, safe user text
-FLOW PASS help: field validation, preview confirmation, FAQ empty state
-FLOW PASS profile: data display, remove request, empty history
-FLOW PASS shared contact: branch-specific phone and WhatsApp
-FLOW PASS storage denied: pages still initialize
-FLOW PASS cart limits, decrease, remove
-FLOW PASS invalid photo type/size and password name removal
-FLOW PASS specialist branch+search filters and About routing
-FLOW PASS staff profiles: 24 stable sample biographies, ages/experience bounds, avatars, connected service+branch filters, price-table rows
-FLOW PASS About: intro text and image remain sibling columns; next-step section follows the full row
+PASS initial load index
+PASS initial load about
+PASS initial load services
+PASS initial load specialists
+PASS initial load help
+PASS initial load reviews
+PASS initial load booking
+PASS initial load register
+PASS initial load login
+PASS initial load profile
+PASS catalogue filters, regenerated delegated buttons, cart totals, remove and clear
+PASS booking field errors, live correction, total, success reset, duplicate and invalid dates
+PASS password show/hide, exact comparison, live correction, success reset and no stored passwords
+PASS login demo-only reset
+PASS safe user text, local review create, delegated animated removal and empty state
+PASS FAQ filtering, slide callbacks, map fallback and question reset
+PASS profile edit, remove request, clear data and empty state
+PASS specialist search
+PASS effects enabled: timed completion callbacks restore controls and focus feedback
+TOTAL 19 passing scenarios; jsdom DOM tests, not a visual browser test.

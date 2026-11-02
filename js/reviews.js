@@ -1,142 +1,58 @@
 'use strict';
-(() => {
+$(function () {
   const S = window.Shindal;
-  S.byId('review-form').previousElementSibling.textContent =
-    'Reviews added here are local demonstrations in this browser tab. Nothing is sent to administrators.';
-  const list = S.byId('reviews-list');
-  const form = S.byId('review-form');
-  // Retain documentary photo reviews without inventing names, ratings or historical dates.
-  const existing = Array.from(list.querySelectorAll('img')).map(
-    (img, index) => ({
-      id: `photo-${index}`,
-      name: 'Parent review — source photo',
-      text: 'Open the original review image.',
-      image: img.getAttribute('src'),
-      branch: '',
-      date: null,
-    }),
-  );
-  let submitted = S.read('reviews', []).filter(
-    (row) =>
-      row &&
-      typeof row.name === 'string' &&
-      typeof row.text === 'string' &&
-      typeof row.id === 'string' &&
-      !Number.isNaN(Date.parse(row.date)),
-  );
-  const renderReview = (review) => {
-    const col = S.el('div', '', 'col');
-    const card = S.el('article', '', 'soft-card p-3 h-100');
-    card.append(S.el('h3', review.name, 'h6'), S.el('p', review.text));
+  const $list = $('#reviews-list');
+  const $form = $('#review-form');
+  $form.prev('p').text('Reviews added here are local demonstrations in this browser tab. Nothing is sent to administrators.');
+  const original = $list.find('img').map(function (index) {
+    return {id: 'photo-' + index, name: 'Parent review — source photo', text: 'Open the original review image.', image: $(this).attr('src'), branch: '', date: null};
+  }).get();
+  let submitted = S.rows('reviews').filter(row => typeof row.name === 'string' && typeof row.text === 'string' && typeof row.date === 'string');
+  const renderReview = review => {
+    const $column = S.make('div', '', 'col').attr('data-review-id', review.id);
+    const $card = S.make('article', '', 'soft-card p-3 h-100').append(S.make('h3', review.name, 'h6'), S.make('p', review.text, 'text-break'));
     if (review.image) {
-      const link = S.el('a', 'Open original photo');
-      link.href = review.image;
-      const image = S.el('img', '', 'img-fluid rounded-3');
-      image.loading = 'lazy';
-      image.src = review.image;
-      image.alt = review.name;
-      link.prepend(image);
-      card.append(link);
+      $card.append(S.make('a', 'Open original photo').attr('href', review.image).prepend(S.make('img', '', 'img-fluid rounded-3').attr({src: review.image, alt: review.name})));
     }
-    card.append(
-      S.el(
-        'p',
-        review.date
-          ? `${review.branch} · ${new Date(review.date).toLocaleString('en-GB', { timeZone: 'Asia/Almaty' })} · Local demo review`
-          : 'Source photo: date and author remain in original image.',
-        'small text-muted',
-      ),
-    );
-    if (!review.image)
-      card.append(
-        S.button('Remove this demo review', () => {
-          submitted = submitted.filter((item) => item.id !== review.id);
-          S.save('reviews', submitted);
-          draw();
-          S.message(S.byId('review-confirmation'), 'Demo review removed.');
-        }),
-      );
-    col.append(card);
-    return col;
+    const time = review.date ? review.branch + ' · ' + new Date(review.date).toLocaleString('en-GB', {timeZone: 'Asia/Almaty'}) + ' · Local demo review' : 'Original date and author remain in the source photo.';
+    $card.append(S.make('p', time, 'small text-muted'));
+    if (!review.image) $card.append(S.button('Remove this demo review').attr('data-remove-review', review.id));
+    return $column.append($card);
   };
-  const controls = S.el('div', '', 'mb-3');
-  list.before(controls);
-  const filter = S.select(controls, 'review-filter', 'Reviews', [
-    ['', 'All'],
-    ['local', 'Local demo submissions'],
-  ]);
-  const count = S.el('p');
-  count.setAttribute('aria-live', 'polite');
-  controls.append(
-    count,
-    S.button('Reset reviews filter', () => {
-      filter.value = '';
-      draw();
-    }),
-  );
+  const $controls = S.make('div', '', 'mb-3').insertBefore($list);
+  const $filter = S.select($controls, 'review-filter', 'Reviews', [['', 'All reviews'], ['local', 'Local demo submissions']]);
+  const $count = S.make('p').attr({'aria-live': 'polite', id: 'review-count'}).appendTo($controls);
   const draw = () => {
-    const rows =
-      filter.value === 'local' ? submitted : [...submitted, ...existing];
-    count.textContent = `${rows.length} reviews`;
-    S.render(
-      list,
-      rows,
-      renderReview,
-      'No local demo reviews yet. Submit one below.',
-    );
+    const reviews = $filter.val() === 'local' ? submitted : submitted.concat(original);
+    $count.text(reviews.length + ' reviews');
+    S.render($list, reviews, renderReview, 'No local demo reviews yet. Submit one below.');
   };
-  filter.addEventListener('change', draw);
-  const text = S.byId('review-text');
-  text.maxLength = 1000;
-  const counter = S.el('p', '', 'small');
-  counter.setAttribute('aria-live', 'polite');
-  text.after(counter);
-  const update = () => {
-    counter.textContent = `${text.value.length}/1000 characters (minimum 20)`;
-  };
-  text.addEventListener('input', update);
-  form.addEventListener('reset', () => setTimeout(update, 0));
-  update();
-  S.validate(
-    form,
-    () => ({
-      'review-name':
-        S.byId('review-name').value.trim().length >= 2
-          ? ''
-          : 'Enter at least 2 characters.',
-      'review-branch': ['astana', 'kosshy', 'taraz'].includes(
-        S.byId('review-branch').value,
-      )
-        ? ''
-        : 'Choose a branch.',
-      'review-text':
-        text.value.trim().length >= 20 && text.value.trim().length <= 1000
-          ? ''
-          : 'Write 20–1000 characters.',
-    }),
-    () => {
-      submitted.unshift({
-        id: S.reference(),
-        name: S.byId('review-name').value.trim(),
-        text: text.value.trim(),
-        branch: S.byId('review-branch').value,
-        date: new Date().toISOString(),
-      });
-      const stored = S.save('reviews', submitted);
-      draw();
-      form.reset();
-      S.message(
-        S.byId('review-confirmation'),
-        `Review added locally${stored ? ' in this browser tab' : ''}. Nothing was sent to the center. ${S.demo}`,
-      );
-    },
-  );
-  const video = S.byId('review-video');
-  const source = video.querySelector('source');
-  if (source) {
-    source.src = 'images/otziv%201.mov';
-    source.removeAttribute('type');
-    video.load();
-  }
-  draw();
-})();
+  $controls.append(S.button('Reset reviews filter', function () { $filter.val(''); draw(); }));
+  $filter.on('change', draw);
+  // Delegated parent stays present when filtering redraws the review cards.
+  $list.on('click', '[data-remove-review]', function () {
+    const $button = $(this).prop('disabled', true);
+    const id = $button.attr('data-remove-review');
+    $button.closest('[data-review-id]').fadeOut(160, function () {
+      submitted = submitted.filter(review => review.id !== id);
+      const stored = S.save('reviews', submitted); draw();
+      S.message($('#review-confirmation'), 'Demo review removed.' + (stored ? '' : ' Browser storage unavailable; change applies to this page only.'));
+    });
+  });
+  const $text = $('#review-text').attr('maxlength', 1000);
+  const $counter = S.make('p', '', 'small').attr('aria-live', 'polite').insertAfter($text);
+  const update = () => $counter.text(String($text.val()).length + '/1000 characters (minimum 20)');
+  $text.on('input', update); $form.on('reset', function () { setTimeout(update, 0); });
+  S.validate($form, () => ({
+    'review-name': String($('#review-name').val()).trim().length >= 2 && String($('#review-name').val()).trim().length <= 80 ? '' : 'Enter a name with 2–80 characters.',
+    'review-branch': ['astana', 'kosshy', 'taraz'].includes($('#review-branch').val()) ? '' : 'Choose a branch.',
+    'review-text': String($text.val()).trim().length >= 20 && String($text.val()).trim().length <= 1000 ? '' : 'Write 20–1000 characters.'
+  }), function () {
+    submitted.unshift({id: S.reference(), name: String($('#review-name').val()).trim(), text: String($text.val()).trim(), branch: $('#review-branch').val(), date: new Date().toISOString()});
+    const stored = S.save('reviews', submitted);
+    draw(); $form.trigger('reset');
+    S.message($('#review-confirmation'), 'Review added locally. ' + (stored ? 'Saved in this browser tab. ' : 'Storage unavailable; visible on this page only. ') + S.demo);
+  });
+  S.make('a', 'Open the video directly if embedded playback is unavailable', 'd-block mt-2').attr('href', 'images/otziv%201.mp4').insertAfter($('#review-video').closest('.ratio'));
+  draw(); update();
+});

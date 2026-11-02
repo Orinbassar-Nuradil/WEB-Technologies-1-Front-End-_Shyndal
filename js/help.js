@@ -1,102 +1,67 @@
 'use strict';
-(() => {
+$(function () {
   const S = window.Shindal;
-  S.byId('faq-0').querySelector('.accordion-body').textContent =
-    'Use Booking to prepare a demonstration schedule. For a real appointment and first assessment, contact the branch directly; this form does not send requests.';
-  S.byId('faq-3').querySelector('.accordion-body').textContent =
-    'Monday–Friday: 08:00–13:00 and 14:00–19:00. Saturday: 08:00–13:00. Sunday: closed.';
-  S.byId('question-form').previousElementSibling.textContent =
-    'Preview your question locally. For a real reply, contact the branch directly using phone or WhatsApp above.';
-  const faq = S.byId('faq-list');
-  const search = S.field(faq.parentElement, 'faq-search', 'Search questions');
-  faq.before(search.parentElement);
-  const count = S.el('p');
-  count.setAttribute('aria-live', 'polite');
-  faq.before(count);
-  const empty = S.el(
-    'p',
-    'No matching questions. Reset or ask below.',
-    'hidden',
-  );
-  faq.after(empty);
+  const $faq = $('#faq-list');
+  const $search = S.field($faq.parent(), 'faq-search', 'Search questions', 'search');
+  $search.parent().insertBefore($faq);
+  const $count = S.make('p').attr({'aria-live': 'polite', id: 'faq-count'}).insertBefore($faq);
+  const $empty = S.make('p', 'No matching questions. Reset or ask below.', 'hidden').insertAfter($faq);
   const filter = () => {
-    let found = 0;
-    faq.querySelectorAll('.accordion-item').forEach((item) => {
-      const match = item.textContent
-        .toLowerCase()
-        .includes(search.value.trim().toLowerCase());
-      item.classList.toggle('hidden', !match);
-      if (match) found++;
+    let count = 0;
+    $faq.find('.accordion-item').each(function () {
+      const $item = $(this);
+      const match = $item.text().toLowerCase().includes(String($search.val()).trim().toLowerCase());
+      $item.toggleClass('hidden', !match);
+      if (match) count += 1;
     });
-    count.textContent = `${found} questions found`;
-    empty.classList.toggle('hidden', found !== 0);
+    $count.text(count + ' questions found'); $empty.toggleClass('hidden', count !== 0);
   };
-  search.addEventListener('input', filter);
-  faq.before(
-    S.button('Reset FAQ search', () => {
-      search.value = '';
-      filter();
-    }),
-  );
-  filter();
-  faq.addEventListener('click', (event) => {
-    if (window.bootstrap) return;
-    const button = event.target.closest('button');
-    if (!button) return;
-    const panel = document.querySelector(button.dataset.bsTarget);
-    panel.classList.toggle('show');
-    button.setAttribute(
-      'aria-expanded',
-      String(panel.classList.contains('show')),
-    );
+  $search.on('input', filter);
+  S.button('Reset FAQ search', function () { $search.val(''); filter(); }).insertBefore($faq);
+  // Only jQuery owns FAQ transitions; remove Bootstrap's click hook to avoid double handling.
+  $faq.find('.accordion-button').removeAttr('data-bs-toggle');
+  $faq.on('click.faq', '.accordion-button', function () {
+    const $button = $(this);
+    const $panel = $button.closest('.accordion-item').find('.accordion-collapse');
+    const open = $panel.hasClass('show');
+    $button.prop('disabled', true).attr('aria-expanded', String(!open)).toggleClass('collapsed', open);
+    if (open) {
+      $panel.stop(true, true).slideUp(180, function () {
+        $(this).removeClass('show'); $button.prop('disabled', false);
+      });
+    } else {
+      $panel.stop(true, true).addClass('show').hide().slideDown(180, function () {
+        $button.prop('disabled', false);
+      });
+    }
   });
-  S.byId('map-tabs').addEventListener('click', (event) => {
+  $('#map-tabs').on('click.maps', 'button', function () {
     if (window.bootstrap) return;
-    const button = event.target.closest('button');
-    if (!button) return;
-    document.querySelectorAll('#map-tabs button').forEach((tab) => {
-      tab.classList.toggle('active', tab === button);
-      tab.setAttribute('aria-selected', String(tab === button));
-    });
-    document.querySelectorAll('.tab-pane').forEach((panel) => {
-      const active = `#${panel.id}` === button.dataset.bsTarget;
-      panel.classList.toggle('active', active);
-      panel.classList.toggle('show', active);
-    });
+    const $button = $(this);
+    $('#map-tabs button').removeClass('active').attr({'aria-selected': 'false', tabindex: '-1'});
+    $button.addClass('active').attr({'aria-selected': 'true', tabindex: '0'});
+    $('.tab-pane').removeClass('active show');
+    $($button.attr('data-bs-target')).addClass('active show');
+  }).on('keydown.maps', 'button', function (event) {
+    if (window.bootstrap || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    const $tabs = $('#map-tabs button'); const current = $tabs.index(this);
+    const index = event.key === 'Home' ? 0 : event.key === 'End' ? $tabs.length - 1 : (current + (event.key === 'ArrowRight' ? 1 : -1) + $tabs.length) % $tabs.length;
+    $tabs.eq(index).trigger('click').trigger('focus');
   });
-  const form = S.byId('question-form');
-  const text = S.byId('question-text');
-  text.maxLength = 1000;
-  const counter = S.el('p', '', 'small');
-  text.after(counter);
-  const update = () => {
-    counter.textContent = `${text.value.length}/1000 characters`;
-  };
-  text.addEventListener('input', update);
-  form.addEventListener('reset', () => setTimeout(update, 0));
-  update();
-  S.validate(
-    form,
-    () => ({
-      'question-name':
-        S.byId('question-name').value.trim().length >= 2
-          ? ''
-          : 'Enter your name.',
-      'question-contact':
-        S.email(S.byId('question-contact').value) ||
-        S.phone(S.byId('question-contact').value)
-          ? ''
-          : 'Enter a valid email or Kazakhstan phone.',
-      'question-text':
-        text.value.trim().length >= 20 && text.value.trim().length <= 1000
-          ? ''
-          : 'Write 20–1000 characters.',
-    }),
-    () => {
-      S.message(
-        S.byId('question-confirmation'),
-        `${S.reference()}. ${S.byId('question-name').value.trim()}: ${text.value.trim()} Contact: ${S.byId('question-contact').value.trim()}. Question preview only; use the branch phone or WhatsApp above to send a real question. ${S.demo}`,
-      );
-    },
-  );
-})();
+  const $form = $('#question-form');
+  $form.prev('p').text('Preview your question locally. For a real reply use the branch phone or WhatsApp above.');
+  const $text = $('#question-text').attr('maxlength', 1000);
+  const $counter = S.make('p', '', 'small').insertAfter($text);
+  const update = () => $counter.text(String($text.val()).length + '/1000 characters');
+  $text.on('input', update); $form.on('reset', function () { setTimeout(update, 0); });
+  S.validate($form, () => ({
+    'question-name': String($('#question-name').val()).trim().length >= 2 ? '' : 'Enter your name (at least 2 characters).',
+    'question-contact': S.email(String($('#question-contact').val())) || S.phone(String($('#question-contact').val())) ? '' : 'Enter a valid email or Kazakhstan phone.',
+    'question-text': String($text.val()).trim().length >= 20 && String($text.val()).trim().length <= 1000 ? '' : 'Write 20–1000 characters.'
+  }), function () {
+    const text = S.reference() + '. ' + String($('#question-name').val()).trim() + ': ' + String($text.val()).trim() + ' Contact: ' + String($('#question-contact').val()).trim() + '. Question preview only. ' + S.demo;
+    $form.trigger('reset'); S.message($('#question-confirmation'), text);
+  });
+  filter(); update();
+});

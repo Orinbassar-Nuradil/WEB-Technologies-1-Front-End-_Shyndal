@@ -1,255 +1,159 @@
 'use strict';
-window.Shindal = (() => {
+// jQuery 3.7.1 FULL build from the official CDN: effects are required (the slim build omits them).
+// ready waits until HTML exists; each following page file registers its own ready callback after this one.
+$(function () {
   const services = window.ShindalData;
-  const demo =
-    'Demonstration only: no data is sent to a server and no real booking, payment, order or account is created.';
-  const byId = (id) => document.getElementById(id);
-  const el = (tag, text = '', classes = '') => {
-    const node = document.createElement(tag);
-    node.textContent = text;
-    if (classes) node.className = classes;
-    return node;
-  };
-  const money = (amount) =>
-    `${new Intl.NumberFormat('en-KZ').format(amount)} ₸`;
-  const findService = (id) => services.find((service) => service.id === id);
-  const total = (rows) =>
-    rows.reduce(
-      (sum, row) => sum + (findService(row.id)?.price || 0) * row.quantity,
-      0,
-    );
-  const reference = () =>
-    `DEMO-${Date.now().toString(36).toUpperCase()}-${Math.floor(Math.random() * 9000) + 1000}`;
+  const demo = 'Front-end demonstration only. No data is sent to a server; no real booking, payment, order or account is created.';
+  const make = (tag, text = '', classes = '') => $('<' + tag + '>').text(text).addClass(classes);
+  const money = amount => new Intl.NumberFormat('en-KZ').format(amount) + ' ₸';
+  const findService = id => services.find(item => item.id === id);
+  const total = rows => rows.reduce((sum, row) => sum + (findService(row.id)?.price || 0) * row.quantity, 0);
+  const reference = () => 'DEMO-' + Date.now().toString(36).toUpperCase() + '-' + Math.floor(1000 + Math.random() * 9000);
   const read = (key, fallback) => {
-    try {
-      const parsed = JSON.parse(sessionStorage.getItem(`shindal-${key}`));
-      if (Array.isArray(fallback))
-        return Array.isArray(parsed) ? parsed : fallback;
-      return parsed ?? fallback;
-    } catch {
-      return fallback;
-    }
+    try { return JSON.parse(sessionStorage.getItem('shindal-' + key)) || fallback; }
+    catch { return fallback; }
   };
   const save = (key, value) => {
-    try {
-      sessionStorage.setItem(`shindal-${key}`, JSON.stringify(value));
-      return true;
-    } catch {
-      return false;
+    try { sessionStorage.setItem('shindal-' + key, JSON.stringify(value)); return true; }
+    catch { return false; }
+  };
+  const rows = key => { const value = read(key, []); return Array.isArray(value) ? value.filter(item => item && typeof item === 'object') : []; };
+  const email = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+  const phone = value => /^(?:\+7|8)\d{10}$/.test(value.replace(/[\s()-]/g, ''));
+  const strong = value => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(value);
+  const button = (text, action) => {
+    const $button = make('button', text, 'btn btn-outline-brand btn-sm').attr('type', 'button');
+    if (action) $button.on('click', action);
+    return $button;
+  };
+  const field = ($parent, id, caption, type = 'text') => {
+    const $wrap = make('div', '', 'mb-3');
+    const $input = make('input', '', 'form-control').attr({id, name: id, type});
+    $wrap.append(make('label', caption, 'form-label').attr('for', id), $input).appendTo($parent);
+    return $input;
+  };
+  const select = ($parent, id, caption, options) => {
+    const $input = field($parent, id, caption);
+    const $select = make('select', '', 'form-select').attr({id, name: id});
+    options.forEach(([value, text]) => $select.append(make('option', text).val(value)));
+    $input.replaceWith($select);
+    return $select;
+  };
+  const render = ($parent, items, card, empty = 'No matching items. Change your filters or reset.') => {
+    $parent.empty();
+    if (!items.length) $parent.append(make('p', empty, 'col-12'));
+    else items.forEach(item => $parent.append(card(item)));
+  };
+  const message = ($target, text) => {
+    // Chain: stop stale animations, update safe text, expose the live region, then fade it in.
+    $target.stop(true, true).text(text).attr({'role': 'status', 'aria-live': 'polite', tabindex: '-1'})
+      .removeClass('hidden').addClass('text-break').hide().fadeIn(180, function () {
+        // Callback runs AFTER feedback appears; keyboard/screen-reader users can review the result.
+        $(this).trigger('focus');
+      });
+  };
+  const dismiss = $target => {
+    $target.stop(true, true).fadeOut(120, function () { $(this).addClass('hidden'); });
+  };
+  const clearField = $input => {
+    const id = $input.attr('id');
+    // siblings reaches only this field's own generated error, without adding parent ids.
+    $input.siblings('[data-field-error="' + id + '"]').remove();
+    $input.removeClass('error success').removeAttr('aria-invalid');
+    const described = String($input.attr('aria-describedby') || '').split(' ').filter(token => token && token !== id + '-error');
+    if (described.length) $input.attr('aria-describedby', described.join(' '));
+    else $input.removeAttr('aria-describedby');
+  };
+  const markField = ($input, error) => {
+    clearField($input);
+    $input.addClass(error ? 'error' : 'success').attr('aria-invalid', String(Boolean(error)));
+    if (error) {
+      const id = $input.attr('id');
+      make('p', error, 'error-message').attr({id: id + '-error', 'data-field-error': id}).insertAfter($input);
+      $input.attr('aria-describedby', [String($input.attr('aria-describedby') || ''), id + '-error'].filter(Boolean).join(' '));
     }
   };
-  const message = (node, text) => {
-    node.textContent = text;
-    node.classList.remove('hidden');
-    node.setAttribute('role', 'status');
-    node.setAttribute('aria-live', 'polite');
-  };
-  const button = (text, action) => {
-    const node = el('button', text, 'btn btn-outline-brand btn-sm');
-    node.type = 'button';
-    node.addEventListener('click', action);
-    return node;
-  };
-  const field = (parent, id, label, type = 'text') => {
-    const wrap = el('div', '', 'mb-3');
-    const caption = el('label', label, 'form-label');
-    caption.htmlFor = id;
-    const input = el('input', '', 'form-control');
-    input.id = id;
-    input.type = type;
-    wrap.append(caption, input);
-    parent.append(wrap);
-    return input;
-  };
-  const select = (parent, id, label, options) => {
-    const input = field(parent, id, label);
-    const node = el('select', '', 'form-select');
-    node.id = id;
-    options.forEach(([value, text]) => {
-      const option = el('option', text);
-      option.value = value;
-      node.append(option);
-    });
-    input.replaceWith(node);
-    return node;
-  };
-  const render = (
-    parent,
-    items,
-    make,
-    empty = 'No matches. Change your choices or reset.',
-  ) => {
-    parent.replaceChildren();
-    if (items.length === 0) parent.append(el('p', empty, 'col-12'));
-    else items.forEach((item) => parent.append(make(item)));
-  };
-  const email = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-  const phone = (value) =>
-    /^(?:\+7|8)\d{10}$/.test(value.replace(/[\s()-]/g, ''));
-  const strong = (value) =>
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(value);
-  const validate = (form, rules, success) => {
-    const clear = (input) => {
-      byId(`${input.id}-error`)?.remove();
-      input.classList.remove('error', 'success');
-      input.removeAttribute('aria-invalid');
-      const descriptions = (input.getAttribute('aria-describedby') || '')
-        .split(' ')
-        .filter((id) => id && id !== `${input.id}-error`);
-      if (descriptions.length)
-        input.setAttribute('aria-describedby', descriptions.join(' '));
-      else input.removeAttribute('aria-describedby');
-    };
-    const hideConfirmation = () =>
-      form.parentElement
-        .querySelectorAll('[id$="-confirmation"]')
-        .forEach((node) => node.classList.add('hidden'));
-    ['input', 'change'].forEach((type) =>
-      form.addEventListener(type, (event) => {
-        if (event.target.id) clear(event.target);
-        hideConfirmation();
-      }),
-    );
-    form.addEventListener('reset', () => {
-      Array.from(form.elements).forEach(clear);
-      hideConfirmation();
-    });
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      hideConfirmation();
-      let first = null;
-      Object.entries(rules()).forEach(([id, error]) => {
-        const input = byId(id);
-        if (!input) throw new Error(`Validation field missing: ${id}`);
-        clear(input);
-        input.classList.add(error ? 'error' : 'success');
-        input.setAttribute('aria-invalid', String(Boolean(error)));
-        if (error) {
-          const note = el('p', error, 'error-message');
-          note.id = `${id}-error`;
-          // Place errors outside password input-groups so the eye stays aligned.
-          const anchor = input.parentElement.classList.contains('input-group')
-            ? input.parentElement
-            : input;
-          anchor.after(note);
-          input.setAttribute(
-            'aria-describedby',
-            `${input.getAttribute('aria-describedby') || ''} ${note.id}`.trim(),
-          );
-          first ||= input;
+  // REWRITE 1: .on/.val/.addClass/.after replace addEventListener/value/classList/after in old validate.
+  // The jQuery version makes field traversal clearer; the business validation rules are not inherently shorter.
+  const validate = ($form, rules, success) => {
+    $form.attr('novalidate', 'novalidate'); // Keep required/type/min/max; custom validation supplies accessible per-field messages.
+    // Client checks improve feedback, but a real server MUST validate again: browser checks can be bypassed.
+    const $result = $form.parent().find('[id$="-confirmation"]');
+    $form.on('input.validation change.validation', 'input, select, textarea', function () {
+      const $changed = $(this);
+      const errors = rules();
+      Object.entries(errors).forEach(([id, error]) => {
+        const $input = $form.find('[id="' + id + '"]');
+        if ($input.is($changed) || $input.hasClass('error') || $input.hasClass('success')) {
+          // Keep an error until it is actually fixed; recheck dependent date/time/password fields too.
+          if ($input.attr('aria-invalid') !== undefined) markField($input, error);
         }
       });
-      if (first) first.focus();
+      if (!$result.hasClass('hidden')) dismiss($result);
+    });
+    $form.on('reset.validation', function () {
+      $form.find('input, select, textarea').each(function () { clearField($(this)); });
+      $result.stop(true, true).addClass('hidden');
+    });
+    $form.on('submit.validation', function (event) {
+      // Without preventDefault, the original GET action navigates away and puts form fields into the URL.
+      event.preventDefault();
+      $result.stop(true, true).addClass('hidden');
+      let $first = null;
+      Object.entries(rules()).forEach(([id, error]) => {
+        const $input = $form.find('[id="' + id + '"]');
+        markField($input, error);
+        if (error && !$first) $first = $input;
+      });
+      if ($first) $first.trigger('focus');
       else success();
     });
   };
-  const icon = (kind = 'eye') => {
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('width', '20');
-    svg.setAttribute('height', '20');
-    svg.setAttribute('fill', 'none');
-    svg.setAttribute('stroke', 'currentColor');
-    svg.setAttribute('stroke-width', '1.7');
-    svg.setAttribute('stroke-linecap', 'round');
-    svg.setAttribute('stroke-linejoin', 'round');
-    svg.setAttribute('aria-hidden', 'true');
-    const path = document.createElementNS(svg.namespaceURI, 'path');
-    path.setAttribute(
-      'd',
-      kind === 'back'
-        ? 'm14 6-6 6 6 6M8 12h12'
-        : 'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Zm13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0',
-    );
-    svg.append(path);
-    if (kind === 'eye-off') {
-      const slash = document.createElementNS(svg.namespaceURI, 'path');
-      slash.setAttribute('d', 'M3 3 21 21');
-      svg.append(slash);
-    }
-    return svg;
-  };
-  const passwordControl = (input) => {
-    input.removeAttribute('name');
-    const wrap = el('div', '', 'input-group');
-    input.before(wrap);
-    wrap.append(input);
-    const toggle = button('', () => {
-      input.type = input.type === 'password' ? 'text' : 'password';
-      paint();
+  // REWRITE 3: .on/.attr/.text replace addEventListener/type/textContent for Show/Hide Password.
+  // Delegating one handler to the form is shorter and also works for password controls added later.
+  const passwords = $form => {
+    const checks = [[/.{8,}/, '8 or more characters'], [/[A-Z]/, 'Uppercase letter'], [/[a-z]/, 'Lowercase letter'], [/\d/, 'Number'], [/[^A-Za-z0-9]/, 'Special character']];
+    $form.find('input[type="password"]').each(function () {
+      const $input = $(this).removeAttr('name'); // Never submit password fields as a GET parameter.
+      const id = $input.attr('id');
+      button('Show password').attr({'data-password-for': id, 'aria-controls': id, 'aria-pressed': 'false'}).insertAfter($input);
     });
-    toggle.className = 'btn btn-outline-brand';
-    toggle.setAttribute('aria-controls', input.id);
-    const paint = () => {
-      const visible = input.type === 'text';
-      toggle.replaceChildren(icon(visible ? 'eye-off' : 'eye'));
-      toggle.setAttribute(
-        'aria-label',
-        `${visible ? 'Hide' : 'Show'} ${input.id.includes('confirm') ? 'confirmation ' : ''}password`,
-      );
-      toggle.setAttribute('aria-pressed', String(visible));
-    };
-    wrap.append(toggle);
-    paint();
-    return () => {
-      input.type = 'password';
-      paint();
-    };
-  };
-  const passwordChecklist = (input) => {
-    const list = el(
-      'ul',
-      '',
-      'list-unstyled d-flex flex-wrap gap-2 small mt-2',
-    );
-    list.id = `${input.id}-requirements`;
-    input.parentElement.after(list);
-    input.setAttribute('aria-describedby', list.id);
-    const update = () =>
-      render(
-        list,
-        [
-          [/^.{8,}$/, '8+ characters'],
-          [/[A-Z]/, 'Uppercase'],
-          [/[a-z]/, 'Lowercase'],
-          [/\d/, 'Number'],
-          [/[^A-Za-z0-9]/, 'Symbol'],
-        ],
-        ([pattern, label]) => {
-          const met = pattern.test(input.value);
-          return el(
-            'li',
-            `${met ? '✓' : '○'} ${label}`,
-            `badge rounded-pill ${met ? 'success bg-light' : 'bg-light text-muted'}`,
-          );
-        },
-      );
-    input.addEventListener('input', update);
+    $form.on('click.password', '[data-password-for]', function () {
+      const $button = $(this);
+      const $input = $form.find('[id="' + $button.attr('data-password-for') + '"]');
+      const show = $input.attr('type') === 'password';
+      $input.attr('type', show ? 'text' : 'password');
+      $button.text(show ? 'Hide password' : 'Show password').attr('aria-pressed', String(show));
+    });
+    const $primary = $form.find('input[id$="-password"]');
+    const $checklist = make('ul', '', 'small').attr('id', $primary.attr('id') + '-requirements').insertAfter($primary);
+    $primary.attr('aria-describedby', $checklist.attr('id'));
+    const update = () => render($checklist, checks, ([pattern, label]) => make('li', (pattern.test(String($primary.val())) ? '✓ ' : '○ ') + label));
+    $primary.on('input.password', update);
+    $form.on('reset.password', function () {
+      $form.find('[data-password-for]').text('Show password').attr('aria-pressed', 'false');
+      $form.find('[autocomplete="new-password"], [autocomplete="current-password"]').attr('type', 'password');
+      setTimeout(update, 0);
+    });
     update();
     return update;
   };
-  return {
-    services,
-    demo,
-    el,
-    byId,
-    money,
-    findService,
-    total,
-    reference,
-    read,
-    save,
-    message,
-    button,
-    field,
-    select,
-    render,
-    email,
-    phone,
-    strong,
-    validate,
-    icon,
-    passwordControl,
-    passwordChecklist,
-  };
-})();
+  // Existing state classes only; effect APIs manage their own temporary animation styles.
+
+  $('#primary-nav').on('click.navigation', '[data-bs-toggle]', function () {
+    if (window.bootstrap) return;
+    const $toggle = $(this);
+    const $target = $toggle.attr('data-bs-toggle') === 'dropdown' ? $toggle.siblings('.dropdown-menu') : $($toggle.attr('data-bs-target'));
+    $target.toggleClass('show');
+    $toggle.attr('aria-expanded', String($target.hasClass('show')));
+  });
+  const $searchForm = make('form', '', 'd-flex flex-wrap gap-2 mb-3');
+  const $search = field($searchForm, 'site-search', 'Find a service', 'search');
+  $searchForm.append(make('button', 'Search services', 'btn btn-outline-brand').attr('type', 'submit'));
+  $('#site-footer').find('.container').first().prepend($searchForm);
+  $searchForm.on('submit', function (event) {
+    event.preventDefault(); // Keep the query explicit instead of the browser submitting to this page.
+    location.href = 'services.html?q=' + encodeURIComponent(String($search.val()).trim());
+  });
+  window.Shindal = {services, demo, make, money, findService, total, reference, read, rows, save, email, phone, strong, button, field, select, render, message, dismiss, validate, passwords};
+});

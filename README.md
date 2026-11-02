@@ -1,109 +1,72 @@
-# Shindal Assignment 4–5
+# Shindal jQuery Assignment 6
 
-This is a single-student continuation of the original Shindal Midterm website. The supplied original ZIP is the source baseline. Open `index.html`; no build step, database or backend is required. All frontend code is plain JavaScript. The Bootstrap 5.3.3 CDN links already present at Midterm are retained.
+This is the existing Shindal website from the supplied Desktop/shindal.zip, continued for the jQuery assignment. No new project theme or repository was created. Extract the ZIP and open index.html, or use your usual local static server. Keep the entire folder together. Internet is needed for the official jQuery, Bootstrap and font CDNs and external maps.
 
-## Submission status
+The assignment filename says Assignment 6; its internal heading says Assignment 4. This implementation follows the jQuery instructions in that document.
 
-The technical rebuild preserves the original HTML/CSS source freeze and adds working DOM interactions. It is **not yet an unconditional assignment-compliant submission**:
+## Three rewritten features
 
-- The brief forbids AI-generated code. This version contains AI-assisted code, disclosed in `AI-log.md`. An AI log does not override that prohibition. The student must follow the instructor's policy; this condition is not marked passed.
-- The branch staff names/mappings are fictional examples, retained at the student's request. Verify and replace them with real authorized project data before claiming the realistic-data requirement is satisfied. Original service names, descriptions, durations, prices, addresses and telephone numbers are used.
-- The supplied ZIP contains no `.git` history. The supplied GitHub repository was audited on 2026-10-24: its main history has 36 older commits, latest 2026-10-05, and no tags. The midterm/assignment tags and six meaningful Assignment 4–5 commits are not satisfied by that audit. See GIT_AUDIT.md; no history or tags were manufactured.
-- Automated model, source-freeze and DOM-interaction checks passed. Actual browser screenshots, 375/768/desktop visual checks, keyboard testing in a browser and HTML/CSS validator results still need to be collected. Do not describe the DOM tests as visual browser tests.
+| Feature | Current implementation | Preserved plain JavaScript |
+|---|---|---|
+| Main Booking form validation, field errors and success | js/main.js validate helper plus js/booking.js rules and summary | Original main.js and booking.js sections in js/old-js-version.js |
+| Service catalogue built from an array with filters and estimate | js/services.js | Original services.js section in js/old-js-version.js |
+| Show/Hide Password | js/main.js passwords helper, used by register.js and login.js | Original register.js section in js/old-js-version.js |
 
-See `SUBMISSION_TODO.md`, `CHECKLIST.md` and `EVIDENCE.md` for the exact boundaries.
+Comments directly above the rewritten functions explain the methods replaced and whether jQuery makes them clearer. old-js-version.js contains the original source verbatim and is deliberately NOT linked to any page. It is comparison material, not executable site code.
 
-## Source freeze
+All remaining interactive page scripts have also been converted to jQuery so one feature is never controlled by both jQuery and native DOM handlers. Pure arrays, arithmetic, regular expressions, date parsing, sessionStorage and URL handling remain standard JavaScript; these are not competing DOM approaches.
 
-All 10 original HTML files and both original CSS files match the supplied Midterm archive byte-for-byte after the added local `<script defer src="...">` lines are removed. No interface block was edited directly in HTML. No CSS rule/file was added, removed or rewritten.
+## Connection and initialization
 
-Every page loads `js/data.js`, `js/main.js`, `js/site.js` and its own page script with `defer`. DOM methods create, move, update and remove interface elements. Existing Midterm classes and classes from the Bootstrap version already linked at Midterm provide the layout. `classList` controls hidden, selected, active, error and success states. There is no generated stylesheet, `style` element or `element.style` assignment.
+Every page loads the full jQuery 3.7.1 build from https://code.jquery.com/jquery-3.7.1.min.js before data.js, main.js and the page script. All links use defer, retaining execution order. Every DOM application file wraps its code in $(function () { ... }); main.js documents the version, full-build requirement and ready behavior. data.js only declares the service data and does not manipulate DOM. Bootstrap is the original midterm dependency. No jQuery plugins, ready-made sliders, galleries, templates or extra site frameworks were added.
 
-No essential source-file correction has been applied to Midterm HTML/CSS. Runtime corrections are listed below; they are not claimed as original Midterm work.
+## What visitors can do
 
-## Preserved booking behavior
+- All ten pages: service search in the footer and navigation fallback when Bootstrap is unavailable.
+- Services: text search plus category, sort, count, reset, no-result state, generated cards, contextual booking links, filter collapse, estimate add/increase/decrease/remove/clear, quantities/totals and demonstration reference. Two speech sessions and one neurology consultation total 24000 KZT.
+- Booking: select service and matching specialist, age 1–18, valid contact, future Kazakhstan date/time, Sunday closure, Saturday-by-appointment notice, 1–20 individual sessions and consent. Email is optional but validated when provided. Local conflicting requests are rejected. Successful valid submission preserves the full summary and then resets the form. No appointment availability or actual booking is promised.
+- Register and Login: live password checklist, accessible Show/Hide Password, exact registration confirmation, field-level errors, valid email/phone, full reset and explicit front-end-only result. Optional avatar preview is limited to JPG/PNG/WebP up to 2 MB. No account creation or authentication is claimed; passwords never enter storage, URLs or logs.
+- Reviews: original photo evidence and local submitted reviews use one card renderer; length checks, character counter, automatic time, branch filter, count, empty state and delegated animated removal. User input is always text, never HTML.
+- Help: searchable FAQ, counts and reset, sliding answers, map tab fallback and validated local question preview that resets after success.
+- Profile: edit local demo details, view/remove demo requests, clear local demo state, show truthful empty states.
+- Specialists: search names/roles, result count/reset/empty state and contextual service links.
 
-The prior working booking calendar rules are preserved:
+## Required methods and defense examples
 
-1. Choose a required branch, then a service and a specialist from that branch/service roster.
-2. Choose a Single visit or One-month plan.
-3. Single visit: choose a date, Morning/Afternoon and one exact session.
-4. Monthly: exactly four lessons total, one per consecutive calendar week. Week 1 offers only the chosen start date through Saturday. The next week begins on Monday; lessons 3 and 4 continue in the following weeks. Each day shows its date.
-5. Every lesson independently selects its day, period and exact start. The top-level service/specialist applies to all lessons.
-6. Morning starts: 08:00, 09:00, 10:00, 11:00, 12:00. Afternoon starts: 14:00, 15:00, 16:00, 17:00, 18:00. Every session lasts 40 minutes. Saturday is morning only; Sunday is closed.
-7. Reject past/invalid dates, dates outside the appropriate week, wrong branch/service staff and exact child/specialist time conflicts with saved demo requests.
-8. Calculate the total and show a live text summary of service, branch, specialist, dates, times, count and price. On success save individual demo lessons in this tab and give a clearly marked demonstration reference.
+See CHECKLIST.md for exact file/line references. Selectors include #booking-form (id), .accordion-button (class), input (element), [data-cart-action] (attribute), :checked and :selected. Traversal includes .find(), .closest(), .parent(), .siblings(), .each(). Several handlers use $(this). Two chains of at least three calls appear in the message helper and profile editing, with a chain explanation comment in main.js.
 
-The calendar engine in `ShindalWeekly` was compared with the prior working engine before formatting; it was unchanged. The rebuild adds a required live text summary and demonstration confirmation wording, not a different scheduling algorithm. There is no automatic renewal, real reservation, live availability service, payment or server transmission.
+.text() inserts literal text; .html() parses markup. The only application .html() call inserts a fixed trusted estimate explanation. Names/reviews/questions use .text(). .val() reads/writes form values. .attr() handles declared attributes such as aria-controls; .prop('checked') reads the current checkbox state, while .attr('checked') refers to the original HTML declaration. .prop('disabled') disables checkout when the estimate is empty.
 
-## Separate Login and Register screens
+All event binding uses .on(); events include click, submit, input, change, reset and keydown. Catalogue clicks delegate to the existing #main parent; estimate lines, reviews, history and password controls also delegate. Comments explain why directly binding to existing buttons would miss cards built later. preventDefault comments explain unwanted navigation/GET submission.
 
-These remain separate pages. JavaScript removes the surrounding navigation, CTA, footer and contact widget from the live auth-page DOM, centers the form using prepared Bootstrap classes and adds a back-arrow link. Back uses browser history when available and falls back to Home. Login and Register link to each other.
+Useful effects: .fadeIn(180) reveals confirmation and focuses it in the completion callback; .fadeOut(120) dismisses outdated success after input changes; .fadeOut(160) removes a review after the animation; .slideToggle(180) collapses the service filter panel; .slideUp(180)/.slideDown(180) close/open FAQ answers and restore button availability in callbacks. Bootstrap's FAQ toggle hook is removed at runtime so there is only one owner of FAQ transitions.
 
-The exact recent custom CSS design is intentionally not reproduced: adding its styles would violate the freeze. The centered sequence, separate-page behavior, eye buttons, password checklist and validation are retained using prepared classes. Passwords are never saved, logged or included in profile objects, confirmations or URLs. There is no claimed authentication or real account creation.
+## HTML and CSS freeze
 
-## Functionality Plan
+Both original CSS files are byte-identical. Every original HTML file differs only by one deferred jQuery CDN script link. Existing script filenames were retained, so no HTML blocks had to change. All new controls/cards/errors are created in jQuery. Appearance changes use existing custom/Bootstrap classes through addClass/removeClass/toggleClass/hasClass. No .css(), element.style or generated stylesheet rules were added. jQuery effects manage their own temporary animation properties, as required by the assignment.
 
-Responsible student for every row: **individual student** (single-person submission; no invented team attribution).
+Baseline media correction: the original HTML refers to otziv 1.mp4, but the input ZIP only supplied otziv 1.mov. A real MP4 derivative was created locally using AVFoundation passthrough export, then re-encoded with FFmpeg H.264/AAC for web delivery (47.4 MB reduced to 5.35 MB). The full roughly 50-second video, audio and 652×1028 frame size are retained; encoding quality changes. This is not an extension rename or generated footage. The output contains the MP4 at the exact original HTML path and a direct video link; the source MOV is still preserved in the input ZIP. No HTML/CSS correction was needed. Playback on the target browser still needs a visual check.
 
-| Page | Visitor goal | Functions | Expected result | Responsible |
-|---|---|---|---|---|
-| Home | Find a suitable service and useful contact | Render the common service catalogue; present statistics and navigation | Consistent service links; entry to catalogue/booking | Individual student |
-| Services | Compare services and estimate a plan | Connected search/category/sort; add/increase/decrease/remove/clear estimate | Result count, no-results/reset, subtotals, count, total and demo checkout summary | Individual student |
-| Specialists | Find staff for a branch | Branch and name/service search; catalogue-driven price table | Matching count, empty/reset, next action to Booking | Individual student |
-| Booking | Prepare a visit or four-week schedule | Dependent branch/service/staff choices; independent weekly date/time selection; pricing and validation | Live summary, valid demo request, clear field errors and duplicate prevention | Individual student |
-| Reviews | Read source reviews and add local feedback | One renderer for both source/new cards; local form and character counter; filter/remove | New timestamped local card, no-results state and local-only confirmation | Individual student |
-| Help | Find relevant information and prepare a question | Search/reset FAQ; branch tabs; question validation/character counter | Matching FAQ count, correct branch contacts, safe question preview | Individual student |
-| Register | Validate and retain non-password profile details | Name/email/phone/branch/photo rules; exact password confirmation; live checklist/eye controls | Specific errors, first-invalid focus or explicit demo summary; no password storage | Individual student |
-| Login | Check input and access demo profile page | Email/password validation, live checklist, eye toggle | Validation-only message; no authentication claim | Individual student |
-| Profile | Manage local details and scheduled lessons | Edit/cancel/save profile; remove individual demo requests; clear local data | Updated details, recalculated visible history/empty state and feedback | Individual student |
-| About | Choose the next visitor journey | Goal selector and meaningful destination | Relevant explanation and link to catalogue/staff/contact | Individual student |
-| Shared | Contact the correct center from any normal page | Choose branch in contact panel; update address/call/WhatsApp; keyboard/click/hover support | Correct branch-specific call or message link; auth pages stay standalone | Individual student |
+## Verification
 
-The catalogue/estimate, booking planner, registration flow, profile editing/history, reviews and help/question flow are substantial visitor tasks. Cosmetic changes, console output and isolated random numbers are not counted as substantial features.
+EVIDENCE.md records the executed checks and their limitations. All ten pages initialized successfully with real jQuery 3.7.1 in jsdom. Nineteen grouped DOM scenarios passed, including regenerated-card delegation, cart arithmetic, live validation, success reset, safe literal user text and local profile flows. These checks do not replace a visual browser test.
 
-## Runtime consistency corrections
+Quick data test: node tests/logic.cjs from this folder. For full DOM tests, install the DEVELOPMENT-ONLY dependency in tests (`npm install --prefix tests`), then run `node tests/jquery-dom.cjs`. The official core jQuery fixture in tests/fixtures is test data only; production pages always use the required CDN. No node_modules is included or needed to open the site.
 
-- Contact/footer/help/specialist schedules use the preserved booking hours, including Saturday morning and Sunday closure.
-- The common eight-service catalogue supplies Home, Services and the dynamic Specialists price table. An old static LFK entry is not presented as a bookable service when it is absent from the common catalogue.
-- Original sample profile/history rows are replaced with real local demo state and a useful empty state.
-- Review video source is corrected through DOM from the missing MP4 reference to the original supplied MOV file. Browser playback compatibility still needs visual/manual checking.
-- Original forms' claims of administrator submission/authentication are replaced in the live DOM with local-demo explanations.
-- Original service data and prices are retained. Branch staff names are explicitly marked fictional pending verification.
-- The bottom CTA remains on Home. The original Services CTA section is reused through DOM as the estimate container; no new HTML container is directly authored. On other normal pages the bottom CTA is removed through DOM.
+A real browser run is still required to confirm responsive layout, animation appearance, external CDN/maps/video loading and the browser console. Automated Chrome launch and localhost server binding were denied by this execution environment. No screenshots or visual/console pass have been fabricated.
 
-## Data and storage
+## Repository and individual contribution
 
-Service objects contain id, name, description, price, duration, image, category and original role data. The branch contact array contains authentic details from the original website. `ShindalBooking` supplies the retained demonstration branch/service roster. `ShindalWeekly` supplies the retained four-lesson calendar rules.
+The supplied ZIP contains no .git metadata, so this deliverable cannot preserve or inspect the original repository's history. Copy its changed files into the SAME original Git repository. Do not create a replacement repository or overwrite the midterm tag. Every actual team member must make at least four meaningful commits across three different days from their own account; an individual student requires six. Those actions and personal contributions cannot be fabricated by a generated ZIP.
 
-`sessionStorage` stores non-password profile details, demo bookings, local reviews, estimate quantities and a contact-branch preference. Storage is optional: unavailable storage produces useful feedback and does not prevent initialization. Data is per browser tab; there is no cross-device availability checking. Review text is rendered with `textContent`.
+No written report or video recording is required by this assignment; demonstrate the website live. README/checklist/testing notes are project documentation. At defense, show delegation, effects and validation; explain each jQuery line and its plain-JavaScript equivalent; be ready to change an effect, validation field, chain or list. Official docs and W3Schools are permitted there, but AI/another person is not.
 
-## Checks
+AI preparation assistance is recorded honestly in AI-log.md. Historic assistance entries are retained; this assignment's defense must be completed independently.
 
-With Node.js installed, run from this folder:
+## Official references used
 
-```sh
-node tests/freeze.cjs
-node tests/source-audit.cjs
-node tests/logic.cjs
-```
-
-Optional development-only DOM tests use `linkedom` (not shipped or loaded by the website). To run them in a separate environment, install `linkedom@0.18.14` as a dev dependency and run `node tests/dom-integration.cjs`. This is DOM simulation, not a browser or CSS renderer.
-
-Read `EVIDENCE.md` for actual results and remaining manual checks. Do not claim unperformed screenshots or validation runs.
-
-## Git and defense
-
-Continue the actual Assignments 1–3/Midterm repository. Do not replace or move its `midterm` tag. Preserve existing history. Do not fabricate commit dates or author identities. An individual submission requires at least six meaningful commits; use real work over real days (plan three days to cover the brief's multi-day expectation).
-
-`assignment-4` belongs on the real working data/logic milestone, and `assignment-5` on the completed interaction milestone. This archive does not invent either historical milestone. See `SUBMISSION_TODO.md` before tagging. At defense, explain any page's input-to-result flow and make a live change yourself.
-
-## Verified original repository
-
-Repository: https://github.com/Orinbassar-Nuradil/WEB-Technologies-1-Front-End-_Shyndal
-
-Read-only audit details and asset-path discrepancies are in GIT_AUDIT.md. The URL is now known; the missing tags and new-assignment history remain unresolved.
-
-## 2026-10-25 profile and layout update
-
-Specialists now display the supplied neutral avatar and a persistent sample biography. Ages are 25–40; experience is at least two years and no more than age minus 23. Fictional institution names and sample certificate titles are labelled as examples on the page and cards, not actual verified clinician credentials. These are still pending real-data verification. Search, branch and service filters work together. The table is restyled through prepared classes only. The About next-step section now follows the entire introduction row so it no longer separates the text and image columns. No source HTML/CSS or booking.js logic changed.
+- https://api.jquery.com/on/
+- https://api.jquery.com/slideToggle/
+- https://api.jquery.com/text/
+- https://api.jquery.com/html/
+- https://api.jquery.com/prop/
