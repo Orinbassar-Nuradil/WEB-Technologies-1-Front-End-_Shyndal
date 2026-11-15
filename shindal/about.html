@@ -10,18 +10,19 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="css/base.css" rel="stylesheet"/>
   <link href="css/main.css" rel="stylesheet"/>
-   <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script defer src="js/data.js"></script>
+  <script defer src="js/utils.js"></script>
+  <script defer src="js/dom.js"></script>
   <script defer src="js/main.js"></script>
 </head>
  <body>
   <nav class="navbar navbar-expand-lg sticky-top" id="primary-nav">
    <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+    <a class="navbar-brand d-flex flex-column align-items-start lh-1" href="index.html">
      <span class="brand-logo">
       Шыңдал
      </span>
-     <span class="brand-sub d-none d-sm-inline">
+     <span class="brand-sub d-none d-sm-inline mt-1">
       Development Support Center
      </span>
     </a>
@@ -105,70 +106,36 @@
      </li>
     </ol>
    </nav>
-   <div class="row g-4 align-items-center mb-5">
-    <div class="col-lg-6">
-     <h1 class="display-5 fw-bold">
-      About Shindal
-     </h1>
-     <p class="lead">
-      Shindal is a development support center that helps children reach their potential. For 6 years we have worked with modern methods and an individual approach, and we have already changed the lives of more than 500 children.
-     </p>
-     <p>
-      Every child works with our specialists individually, following a personal program built after the first diagnostic session. We work closely with children who have speech delay, autism spectrum disorders, attention deficit and hyperactivity, and with their parents. Classes take place in specially equipped, safe rooms.
-     </p>
+   <section class="about-intro" aria-labelledby="about-title">
+    <div class="about-intro-copy">
+     <h1 id="about-title">About Shindal</h1>
+     <p class="about-lead">For six years, Shindal has helped more than 500 children develop skills for everyday life.</p>
+     <p>We offer one-to-one sessions for children with speech delays, autism, and difficulties with attention or hyperactivity. Our specialists work closely with each family.</p>
      <div class="d-flex flex-wrap gap-2">
-      <a class="btn btn-brand" href="services.html">
-       Our Services
-      </a>
-      <a class="btn btn-outline-brand" href="help.html">
-       Contact Us
-      </a>
+      <a class="btn btn-brand" href="services.html">Our Services</a>
+      <a class="btn btn-outline-brand" href="help.html">Contact Us</a>
      </div>
     </div>
-    <div class="col-lg-6">
-     <img alt="Shindal center" class="img-fluid rounded-4 shadow-sm w-100" src="images/Shindal%20photo.jpeg"/>
+    <div class="about-intro-photo">
+     <img alt="Entrance to the Shindal development support center" src="images/Shindal%20photo.jpeg" width="500" height="375"/>
     </div>
-   </div>
-   <section class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mb-5">
-    <div class="col">
-     <div class="card soft-card h-100 p-3">
-      <h2 class="h6">
-       Our Mission
-      </h2>
-      <p class="small mb-0">
-       To support children's development and help them build a brighter future.
-      </p>
-     </div>
+   </section>
+   <section class="about-principles" aria-label="How we work">
+    <div>
+     <h2>Our mission</h2>
+     <p>Help each child take part in everyday activities with more confidence.</p>
     </div>
-    <div class="col">
-     <div class="card soft-card h-100 p-3">
-      <h2 class="h6">
-       Our Approach
-      </h2>
-      <p class="small mb-0">
-       Individual programs for each child.
-      </p>
-     </div>
+    <div>
+     <h2>Our approach</h2>
+     <p>An initial assessment guides each child’s individual program.</p>
     </div>
-    <div class="col">
-     <div class="card soft-card h-100 p-3">
-      <h2 class="h6">
-       Modern Methods
-      </h2>
-      <p class="small mb-0">
-       Evidence-based and effective techniques.
-      </p>
-     </div>
+    <div>
+     <h2>Our methods</h2>
+     <p>Our specialists use evidence-based techniques in their sessions.</p>
     </div>
-    <div class="col">
-     <div class="card soft-card h-100 p-3">
-      <h2 class="h6">
-       Comfortable Environment
-      </h2>
-      <p class="small mb-0">
-       A safe and friendly space for learning and growth.
-      </p>
-     </div>
+    <div>
+     <h2>Learning spaces</h2>
+     <p>Children work with their specialist in safe, specially equipped rooms.</p>
     </div>
    </section>
    <section class="mb-4" id="branches">
@@ -327,7 +294,7 @@
     </div>
     <hr/>
     <p class="text-center small mb-0">
-     © 2026 Shindal. All rights reserved. Mon–Fri 08:00–19:00 ·
+     © 2026 Shindal. All rights reserved. Mon–Fri 08:00–13:00 and 14:00–19:00 ·
      <a href="mailto:shindal.astana@gmail.com">
       shindal.astana@gmail.com
      </a>

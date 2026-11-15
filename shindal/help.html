@@ -10,19 +10,22 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="css/base.css" rel="stylesheet"/>
   <link href="css/main.css" rel="stylesheet"/>
-   <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script defer src="js/data.js"></script>
+  <script defer src="js/utils.js"></script>
+  <script defer src="js/dom.js"></script>
   <script defer src="js/main.js"></script>
-  <script defer src="js/help.js"></script>
+  <script defer src="js/jq-common.js"></script>
+  <script defer src="js/jq-help.js"></script>
 </head>
  <body>
   <nav class="navbar navbar-expand-lg sticky-top" id="primary-nav">
    <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+    <a class="navbar-brand d-flex flex-column align-items-start lh-1" href="index.html">
      <span class="brand-logo">
       Шыңдал
      </span>
-     <span class="brand-sub d-none d-sm-inline">
+     <span class="brand-sub d-none d-sm-inline mt-1">
       Development Support Center
      </span>
     </a>
@@ -106,175 +109,71 @@
      </li>
     </ol>
    </nav>
-   <header class="text-center my-4">
-    <h1 class="display-5 fw-bold">
-     Help &amp; Contact
-    </h1>
-    <p class="lead text-muted mx-auto page-lead">
-     We are always happy to answer your questions.
-    </p>
+   <header class="help-intro soft-card" aria-labelledby="help-title">
+    <div>
+     <h1 id="help-title">Help &amp; Contact</h1>
+     <p class="lead">Choose your branch for directions or to get in touch with the team.</p>
+     <p class="help-email"><strong>Email</strong> <a href="mailto:shindal.astana@gmail.com">shindal.astana@gmail.com</a></p>
+    </div>
+    <section class="help-hours" aria-labelledby="hours-title">
+     <h2 id="hours-title">Opening hours</h2>
+     <dl>
+      <dt>Mon–Fri</dt><dd>08:00–13:00 <span>and</span> 14:00–19:00</dd>
+      <dt>Saturday</dt><dd>By appointment</dd>
+      <dt>Sunday</dt><dd>Closed</dd>
+     </dl>
+    </section>
    </header>
-   <div class="row g-4 mb-5">
-    <div class="col-lg-5">
-     <div class="card soft-card p-4 h-100">
-      <h2 class="h4">
-       Contacts
-      </h2>
-      <p class="mb-2">
-       <strong>
-        Addresses
-       </strong>
-      </p>
-      <ul>
-       <li>
-        Astana: 27/1 Ilyas Omarov Street, Astana
-       </li>
-       <li>
-        Kosshy: 21 Turar Ryskulov Street, Kosshy
-       </li>
-       <li>
-        Taraz: Myngbulak microdistrict, 3, Taraz
-       </li>
-      </ul>
-      <p class="mb-2">
-       <strong>
-        Phone / WhatsApp
-       </strong>
-      </p>
-      <ul>
-       <li>
-        Astana:
-        <a href="tel:+77478263915">
-         +7 747 826 39 15
-        </a>
-        ,
-        <a href="tel:+77714542046">
-         +7 771 454 20 46
-        </a>
-       </li>
-       <li>
-        Kosshy:
-        <a href="tel:+77786584550">
-         +7 778 658 45 50
-        </a>
-       </li>
-       <li>
-        Taraz:
-        <a href="tel:+77074821698">
-         +7 707 482 16 98
-        </a>
-       </li>
-      </ul>
-      <p class="mb-1">
-       <strong>
-        Working hours
-       </strong>
-      </p>
-      <p>
-       Mon–Fri 08:00–13:00 and 14:30–19:00 (lunch 13:00–14:30). Saturday by appointment.
-      </p>
-      <p class="mb-0">
-       <strong>
-        Email
-       </strong>
-       <br/>
-       <a href="mailto:shindal.astana@gmail.com">
-        shindal.astana@gmail.com
-       </a>
-      </p>
+   <section class="soft-card help-branches mb-5" aria-labelledby="branch-title">
+    <div class="help-branch-bar">
+     <h2 id="branch-title">Our branches</h2>
+     <div id="map-tabs" role="tablist" aria-label="Choose a branch">
+      <button type="button" role="tab" id="tab-astana" aria-controls="map-astana" aria-selected="true" tabindex="0">Astana</button>
+      <button type="button" role="tab" id="tab-kosshy" aria-controls="map-kosshy" aria-selected="false" tabindex="-1">Kosshy</button>
+      <button type="button" role="tab" id="tab-taraz" aria-controls="map-taraz" aria-selected="false" tabindex="-1">Taraz</button>
      </div>
     </div>
-    <div class="col-lg-7">
-     <ul class="nav nav-tabs" id="map-tabs" role="tablist">
-      <li class="nav-item" role="presentation">
-       <button aria-controls="map-astana" aria-selected="true" class="nav-link active" data-bs-target="#map-astana" data-bs-toggle="tab" id="tab-astana" role="tab" type="button">
-        Astana
-       </button>
-      </li>
-      <li class="nav-item" role="presentation">
-       <button aria-controls="map-kosshy" aria-selected="false" class="nav-link" data-bs-target="#map-kosshy" data-bs-toggle="tab" id="tab-kosshy" role="tab" type="button">
-        Kosshy
-       </button>
-      </li>
-      <li class="nav-item" role="presentation">
-       <button aria-controls="map-taraz" aria-selected="false" class="nav-link" data-bs-target="#map-taraz" data-bs-toggle="tab" id="tab-taraz" role="tab" type="button">
-        Taraz
-       </button>
-      </li>
-     </ul>
-     <div class="tab-content pt-3">
-      <div aria-labelledby="tab-astana" class="tab-pane fade show active" id="map-astana" role="tabpanel" tabindex="0">
-       <p class="mb-2">
-        <strong>
-         27/1 Ilyas Omarov Street, Astana
-        </strong>
-        ·
-        <a href="tel:+77478263915">
-         +7 747 826 39 15
-        </a>
-        ·
-        <a href="https://wa.me/77478263915" rel="noopener" target="_blank">
-         WhatsApp
-        </a>
-        ·
-        <a href="https://www.instagram.com/shindal_astana/" rel="noopener" target="_blank">
-         Instagram
-        </a>
-       </p>
-       <div class="ratio ratio-4x3">
-        <iframe loading="lazy" src="https://maps.google.com/maps?q=27/1%20Ilyas%20Omarov%20Street%2C%20Astana&amp;output=embed" title="Map of the Astana branch">
-        </iframe>
-       </div>
-      </div>
-      <div aria-labelledby="tab-kosshy" class="tab-pane fade" id="map-kosshy" role="tabpanel" tabindex="0">
-       <p class="mb-2">
-        <strong>
-         21 Turar Ryskulov Street, Kosshy
-        </strong>
-        ·
-        <a href="tel:+77786584550">
-         +7 778 658 45 50
-        </a>
-        ·
-        <a href="https://wa.me/77786584550" rel="noopener" target="_blank">
-         WhatsApp
-        </a>
-        ·
-        <a href="https://www.instagram.com/shindal_kosshy/" rel="noopener" target="_blank">
-         Instagram
-        </a>
-       </p>
-       <div class="ratio ratio-4x3">
-        <iframe loading="lazy" src="https://maps.google.com/maps?q=21%20Turar%20Ryskulov%20Street%2C%20Kosshy&amp;output=embed" title="Map of the Kosshy branch">
-        </iframe>
-       </div>
-      </div>
-      <div aria-labelledby="tab-taraz" class="tab-pane fade" id="map-taraz" role="tabpanel" tabindex="0">
-       <p class="mb-2">
-        <strong>
-         Myngbulak microdistrict, 3, Taraz
-        </strong>
-        ·
-        <a href="tel:+77074821698">
-         +7 707 482 16 98
-        </a>
-        ·
-        <a href="https://wa.me/77074821698" rel="noopener" target="_blank">
-         WhatsApp
-        </a>
-        ·
-        <a href="https://www.instagram.com/shindal_taraz/" rel="noopener" target="_blank">
-         Instagram
-        </a>
-       </p>
-       <div class="ratio ratio-4x3">
-        <iframe loading="lazy" src="https://maps.google.com/maps?q=Myngbulak%20microdistrict%2C%203%2C%20Taraz&amp;output=embed" title="Map of the Taraz branch">
-        </iframe>
-       </div>
+    <div class="help-branch" id="map-astana" role="tabpanel" aria-labelledby="tab-astana" tabindex="0">
+     <div class="help-branch-info">
+      <h3>Astana branch</h3>
+      <p class="help-address">27/1 Ilyas Omarov Street, Astana</p>
+      <h4>Phone</h4>
+      <a class="help-phone" href="tel:+77478263915">+7 747 826 39 15</a>
+      <a class="help-phone" href="tel:+77714542046">+7 771 454 20 46</a>
+      <div class="help-branch-actions">
+       <a class="btn btn-brand" href="https://wa.me/77478263915" target="_blank" rel="noopener">WhatsApp</a>
+       <a class="btn btn-outline-brand" href="https://www.instagram.com/shindal_astana/" target="_blank" rel="noopener">Instagram</a>
       </div>
      </div>
+     <iframe class="help-map" loading="lazy" src="https://maps.google.com/maps?q=27/1%20Ilyas%20Omarov%20Street%2C%20Astana&amp;output=embed" title="Map of the Astana branch"></iframe>
     </div>
-   </div>
+    <div class="help-branch" id="map-kosshy" role="tabpanel" aria-labelledby="tab-kosshy" tabindex="0" hidden>
+     <div class="help-branch-info">
+      <h3>Kosshy branch</h3>
+      <p class="help-address">21 Turar Ryskulov Street, Kosshy</p>
+      <h4>Phone</h4>
+      <a class="help-phone" href="tel:+77786584550">+7 778 658 45 50</a>
+      <div class="help-branch-actions">
+       <a class="btn btn-brand" href="https://wa.me/77786584550" target="_blank" rel="noopener">WhatsApp</a>
+       <a class="btn btn-outline-brand" href="https://www.instagram.com/shindal_kosshy/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+     </div>
+     <iframe class="help-map" loading="lazy" src="https://maps.google.com/maps?q=21%20Turar%20Ryskulov%20Street%2C%20Kosshy&amp;output=embed" title="Map of the Kosshy branch"></iframe>
+    </div>
+    <div class="help-branch" id="map-taraz" role="tabpanel" aria-labelledby="tab-taraz" tabindex="0" hidden>
+     <div class="help-branch-info">
+      <h3>Taraz branch</h3>
+      <p class="help-address">Myngbulak microdistrict, 3, Taraz</p>
+      <h4>Phone</h4>
+      <a class="help-phone" href="tel:+77074821698">+7 707 482 16 98</a>
+      <div class="help-branch-actions">
+       <a class="btn btn-brand" href="https://wa.me/77074821698" target="_blank" rel="noopener">WhatsApp</a>
+       <a class="btn btn-outline-brand" href="https://www.instagram.com/shindal_taraz/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+     </div>
+     <iframe class="help-map" loading="lazy" src="https://maps.google.com/maps?q=Myngbulak%20microdistrict%2C%203%2C%20Taraz&amp;output=embed" title="Map of the Taraz branch"></iframe>
+    </div>
+   </section>
    <div class="row g-4 mb-5">
     <div class="col-lg-6">
      <h2 class="section-title">
@@ -325,7 +224,7 @@
        </h3>
        <div class="accordion-collapse collapse" data-bs-parent="#faq-list" id="faq-3">
         <div class="accordion-body">
-         Monday to Friday, 08:00-13:00 and 14:30-19:00 (lunch break 13:00-14:30). Saturday by appointment.
+         Monday to Friday, 08:00–13:00 and 14:00–19:00. Saturday by appointment.
         </div>
        </div>
       </div>
@@ -462,7 +361,7 @@
     </div>
     <hr/>
     <p class="text-center small mb-0">
-     © 2026 Shindal. All rights reserved. Mon–Fri 08:00–19:00 ·
+     © 2026 Shindal. All rights reserved. Mon–Fri 08:00–13:00 and 14:00–19:00 ·
      <a href="mailto:shindal.astana@gmail.com">
       shindal.astana@gmail.com
      </a>
