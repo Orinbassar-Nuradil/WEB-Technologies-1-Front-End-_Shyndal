@@ -109,30 +109,25 @@
      </li>
     </ol>
    </nav>
-   <header class="text-center my-4">
-    <h1 class="display-5 fw-bold">
-     Create an account
-    </h1>
-    <p class="lead text-muted mx-auto page-lead">
-     Save your child's details and see your bookings in one place.
-    </p>
-   </header>
-   <div class="row justify-content-center mb-5">
-    <div class="col-lg-7">
-     <div class="card soft-card p-4">
+   <div class="account-card soft-card">
+    <header class="account-intro">
+     <h1>Create an account</h1>
+     <p>Save your child's details and see your bookings in one place.</p>
+    </header>
       <form action="register.html#register-confirmation" id="register-form" method="get" novalidate="">
        <div class="alert alert-danger hidden" id="register-errors" role="alert">
        </div>
-       <div class="text-center mb-3">
-        <span aria-hidden="true" class="avatar-circle rounded-circle d-flex align-items-center justify-content-center mx-auto">
-         🙂
-        </span>
-        <label class="form-label mt-2" for="reg-photo">
-         Profile photo (optional)
-        </label>
-        <input accept="image/*" class="form-control" id="reg-photo" name="reg-photo" type="file"/>
+       <div class="registration-photo">
+        <span aria-hidden="true" class="avatar-circle rounded-circle"></span>
+        <div>
+         <label class="form-label" for="reg-photo">Profile photo <small>(optional)</small></label>
+         <input accept="image/jpeg,image/png,image/webp" aria-describedby="photo-formats" class="form-control" id="reg-photo" name="reg-photo" type="file"/>
+         <small id="photo-formats">JPG, PNG or WebP · Up to 2 MB</small>
+        </div>
        </div>
-       <div class="row g-3">
+       <fieldset>
+        <legend>Contact details</legend>
+        <div class="row g-3">
         <div class="col-md-6">
          <label class="form-label" for="reg-name">
           Full name
@@ -167,6 +162,11 @@
           </option>
          </select>
         </div>
+        </div>
+       </fieldset>
+       <fieldset>
+        <legend>Account security</legend>
+        <div class="row g-3">
         <div class="col-md-6">
          <label class="form-label" for="reg-password">
           Password
@@ -180,15 +180,9 @@
          <input class="form-control" id="reg-password-confirm" minlength="8" name="reg-password-confirm" required="" type="password"/>
         </div>
        </div>
-       <p class="small text-muted mt-3 mb-2">
-        Password: at least 8 characters. After you press
-        <strong>
-         Create account
-        </strong>
-        you will see a confirmation below and can open your profile.
-       </p>
+       </fieldset>
        <div class="d-flex flex-wrap gap-2">
-        <button class="btn btn-brand" id="register-submit" type="submit">
+        <button class="btn btn-brand flex-grow-1" id="register-submit" type="submit">
          Create account
         </button>
         <button class="btn btn-outline-brand" type="reset">
@@ -198,15 +192,13 @@
       </form>
       <div aria-live="polite" class="alert alert-success mt-3 hidden" id="register-confirmation" role="status">
       </div>
-      <p class="mt-3 mb-0">
+      <p class="account-switch">
        Already have an account?
        <a href="login.html">
         Log in
        </a>
        .
       </p>
-     </div>
-    </div>
    </div>
   </main>
   <section class="cta-band text-white">
