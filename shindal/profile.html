@@ -66,7 +66,10 @@
        </a>
       </li>
      </ul>
-     <div class="d-flex flex-wrap align-items-center gap-2">
+     <div class="nav-account-actions d-flex flex-wrap align-items-center gap-2">
+      <a class="btn btn-brand" href="booking.html">
+       Book now
+      </a>
       <div class="dropdown">
        <button aria-expanded="false" class="btn btn-outline-brand dropdown-toggle" data-bs-toggle="dropdown" id="account-menu" type="button">
         Account
@@ -83,15 +86,12 @@
          </a>
         </li>
         <li>
-         <a class="dropdown-item active" href="profile.html">
+         <a aria-current="page" class="dropdown-item active" href="profile.html">
           My Profile
          </a>
         </li>
        </ul>
       </div>
-      <a class="btn btn-brand" href="booking.html">
-       Book now
-      </a>
      </div>
     </div>
    </div>
@@ -109,60 +109,38 @@
      </li>
     </ol>
    </nav>
-   <header class="text-center my-4">
-    <h1 class="display-5 fw-bold">
-     My Profile
-    </h1>
-    <p class="lead text-muted mx-auto page-lead">
-     Your details and booking history.
-    </p>
-   </header>
-   <div class="row g-4 mb-4">
-    <div class="col-md-4 text-center">
-     <span aria-hidden="true" class="avatar-circle rounded-circle d-flex align-items-center justify-content-center mx-auto" id="profile-avatar">
-      🙂
-     </span>
-    </div>
-    <div class="col-md-8">
-     <div class="card soft-card p-4">
-      <h2 class="h4">
-       Account details
-      </h2>
-      <dl class="row mb-0" id="profile-details">
-       <dt class="col-sm-4">
-        Full name
-       </dt>
-       <dd class="col-sm-8" id="profile-name"></dd>
-       <dt class="col-sm-4">
-        Email
-       </dt>
-       <dd class="col-sm-8" id="profile-email"></dd>
-       <dt class="col-sm-4">
-        Phone
-       </dt>
-       <dd class="col-sm-8" id="profile-phone"></dd>
-       <dt class="col-sm-4">
-        Preferred branch
-       </dt>
-       <dd class="col-sm-8" id="profile-branch"></dd>
+   <div class="account-card profile-card soft-card">
+    <header class="account-intro profile-intro">
+     <span id="profile-avatar" class="rounded-circle" aria-hidden="true"></span>
+     <div>
+      <h1>My Profile</h1>
+      <p>Your details and booking history.</p>
+     </div>
+    </header>
+    <section class="profile-section">
+     <h2>Account details</h2>
+     <div id="profile-guest">
+      <p>Log in to view and edit your contact details.</p>
+      <a class="btn btn-brand" href="login.html">Log in</a>
+      <a class="btn btn-outline-brand" href="register.html">Register</a>
+     </div>
+     <div id="profile-member" hidden>
+      <dl id="profile-details">
+       <dt>Full name</dt><dd id="profile-name"></dd>
+       <dt>Email</dt><dd id="profile-email"></dd>
+       <dt>Phone</dt><dd id="profile-phone"></dd>
+       <dt>Preferred branch</dt><dd id="profile-branch"></dd>
       </dl>
       <div class="d-flex flex-wrap gap-2 mt-3">
-       <button class="btn btn-outline-brand btn-sm" id="profile-edit" type="button">
-        Edit details
-       </button>
-       <a class="btn btn-outline-brand btn-sm" href="login.html" id="profile-logout">
-        Log out
-       </a>
+       <button class="btn btn-brand btn-sm" id="profile-edit" type="button">Edit details</button>
+       <a class="btn btn-outline-brand btn-sm" href="login.html" id="profile-logout">Log out</a>
       </div>
      </div>
-    </div>
-   </div>
-   <section class="mb-4">
-    <h2 class="h4">
-     Booking history
-    </h2>
+    </section>
+    <section class="profile-section">
+     <h2>Booking history</h2>
     <div class="table-responsive">
-     <table class="table table-bordered align-middle bg-white" id="booking-history">
+     <table class="table align-middle" id="booking-history">
       <caption>
        Past and upcoming appointments
       </caption>
@@ -188,10 +166,11 @@
     </div>
     <div class="alert alert-success hidden" id="profile-message" role="status">
     </div>
-    <a class="btn btn-brand" href="booking.html">
-     Book a new session
-    </a>
-   </section>
+    <div class="d-flex flex-wrap gap-2">
+     <a class="btn btn-brand" href="booking.html">Book a new session</a>
+    </div>
+    </section>
+   </div>
   </main>
   <section class="cta-band text-white">
    <div class="container py-5">

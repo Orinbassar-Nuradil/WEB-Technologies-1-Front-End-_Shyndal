@@ -4,6 +4,30 @@
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--brand-soft)
 }
+.nav-account-actions {justify-content:flex-end}
+.nav-account-actions .dropdown-menu {
+    --bs-dropdown-bg:#fff;
+    --bs-dropdown-border-color:var(--brand-soft);
+    --bs-dropdown-link-color:var(--bs-body-color);
+    --bs-dropdown-link-hover-bg:var(--bs-body-bg);
+    --bs-dropdown-link-hover-color:var(--bs-primary);
+    --bs-dropdown-link-active-bg:var(--brand-soft);
+    --bs-dropdown-link-active-color:var(--bs-primary);
+    --bs-dropdown-min-width:10.5rem;
+    padding:.35rem;
+    margin-top:.35rem;
+    border-radius:.9rem;
+    box-shadow:0 .45rem 1.25rem rgba(70,30,75,.12)
+}
+.nav-account-actions .dropdown-item {
+    padding:.5rem .8rem;
+    border-radius:.55rem
+}
+.nav-account-actions .dropdown-item.active {font-weight:650}
+.nav-account-actions .dropdown-item:focus-visible {
+    outline:2px solid var(--bs-primary);
+    outline-offset:-2px
+}
 .brand-logo {
     font-weight:800;
     font-size:1.6rem;
@@ -704,7 +728,8 @@
     border:1px solid #dbc5df;
     background-color:var(--brand-soft)
 }
-.registration-photo .avatar-circle:empty {
+.registration-photo .avatar-circle:empty,
+#profile-avatar:empty {
     background-image:radial-gradient(circle at 50% 37%,#804987 0 15%,transparent 16%),
                      radial-gradient(ellipse 31% 35% at 50% 86%,#804987 0 91%,transparent 93%)
 }
@@ -743,6 +768,48 @@
 @media (max-width:420px) {
     .registration-photo {grid-template-columns:minmax(0,1fr)}
 }
+.profile-card {max-width:48rem}
+.profile-intro {
+    display:flex;
+    align-items:center;
+    gap:1rem
+}
+#profile-avatar {
+    display:grid;
+    place-items:center;
+    flex:none;
+    width:3.75rem;
+    height:3.75rem;
+    background-color:var(--brand-soft);
+    color:var(--bs-primary);
+    border:1px solid #dbc5df;
+    font-size:1.25rem;
+    font-weight:700
+}
+.profile-section {padding:var(--account-inset);min-width:0}
+.profile-section + .profile-section {border-top:1px solid var(--brand-soft)}
+.profile-section h2 {
+    font-size:1.2rem;
+    color:var(--bs-primary);
+    margin-bottom:1rem
+}
+#profile-details {
+    display:grid;
+    grid-template-columns:minmax(6rem,1fr) minmax(0,2fr);
+    gap:.65rem 1rem;
+    margin:0
+}
+#profile-details dd {margin:0;overflow-wrap:anywhere}
+.profile-card #profile-editor {
+    background:var(--bs-body-bg);
+    border-radius:.75rem;
+    padding:1rem
+}
+#profile-summary {color:#68586c;font-size:.875rem}
+#booking-history {--bs-table-bg:white;--bs-table-border-color:var(--brand-soft)}
+#booking-history thead th {background:var(--brand-soft);color:var(--bs-primary);font-size:.875rem}
+#booking-history td[colspan] {padding:1rem .5rem}
+#booking-history caption {font-size:.875rem}
 .help-intro {
     display:grid;
     grid-template-columns:minmax(0,1.4fr) minmax(16.5rem,1fr);

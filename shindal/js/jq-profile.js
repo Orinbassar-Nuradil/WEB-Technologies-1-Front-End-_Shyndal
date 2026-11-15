@@ -20,16 +20,16 @@ $(function () {
   function drawDetails() {
     const keys = ['name', 'email', 'phone', 'branch'];
     $.each(keys, function (index, key) {
-      let text = loggedIn ? account[key] : 'Log in to see this';
-      if (loggedIn && key === 'branch') text = findBranch(account.branch).name;
+      let text = account[key];
+      if (key === 'branch') text = findBranch(account.branch).name;
       $('#profile-' + key).text(text);
     });
-    $('#profile-avatar').text(loggedIn ? initials(account.name) : '🙂');
+    $('#profile-avatar').text(initials(account.name));
   }
-  drawDetails();
-  if (!loggedIn) {
-    $edit.prop('disabled', true);
-    jqShow($message, account ? 'You are not logged in. Log in to see and edit your details.' : 'No account in this browser tab yet. Register to create one, then log in.');
+  if (loggedIn) {
+    $('#profile-member').prop('hidden', false);
+    $('#profile-guest').prop('hidden', true);
+    drawDetails();
   }
 
   // Log out: end the session, then the link goes on to the login page.
@@ -80,7 +80,7 @@ $(function () {
   // ---------- request history ----------
   const $summary = jqEl('p', '', 'fw-semibold mb-2').attr({id: 'profile-summary', 'aria-live': 'polite'});
   $('#booking-history').closest('.table-responsive').before($summary);
-  const $clear = jqEl('button', 'Clear all requests', 'btn btn-outline-brand ms-2').attr('type', 'button');
+  const $clear = jqEl('button', 'Clear all requests', 'btn btn-outline-brand').attr('type', 'button');
   $('#main a[href="booking.html"]').last().after($clear);
 
   function drawBookings() {
@@ -88,7 +88,7 @@ $(function () {
     if (bookings.length === 0) {
       $body.append($('<tr>').append($('<td>').attr('colspan', 4).text('No requests yet. Press “Book a new session” to make one.')));
       $summary.text('0 requests');
-      $clear.prop('disabled', true);
+      $clear.prop('hidden', true);
       return;
     }
     $.each(bookings, function (index, row) {
@@ -124,7 +124,7 @@ $(function () {
     const total = bookings.reduce(function (sum, row) { return sum + row.total; }, 0);
     const sessions = bookings.reduce(function (sum, row) { return sum + row.quantity; }, 0);
     $summary.text(bookings.length + (bookings.length === 1 ? ' request' : ' requests') + ' · ' + sessions + (sessions === 1 ? ' session' : ' sessions') + ' · estimated total ' + formatMoney(total));
-    $clear.prop('disabled', false);
+    $clear.prop('hidden', false);
   }
 
   // Delegated: rows are rebuilt by drawBookings(), so the handler sits on the table body.
