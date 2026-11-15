@@ -108,20 +108,16 @@
      </li>
     </ol>
    </nav>
-   <header class="text-center my-4">
-    <h1 class="display-5 fw-bold">
-     Book a Consultation
-    </h1>
-    <p class="lead text-muted mx-auto page-lead">
-     Choose a service, a specialist and a schedule for your child.
-    </p>
-   </header>
-   <div class="row g-4 mb-5">
-    <div class="col-lg-7">
-     <div class="card soft-card p-4">
+   <div class="booking-layout">
+    <section class="booking-card soft-card">
+     <header class="account-intro">
+      <h1>Book a Consultation</h1>
+      <p>Choose a service, a specialist and a schedule for your child.</p>
+     </header>
       <form action="booking.html#booking-confirmation" id="booking-form" method="get" novalidate="">
        <div class="alert alert-danger hidden" id="booking-errors" role="alert">
        </div>
+       <fieldset class="booking-fields"><legend>Family details</legend>
        <div class="row g-3">
         <div class="col-md-6">
          <label class="form-label" for="child-name">
@@ -153,6 +149,10 @@
          </label>
          <input class="form-control" id="child-age" max="18" min="1" name="child-age" required type="number"/>
         </div>
+       </div>
+       </fieldset>
+       <fieldset class="booking-fields"><legend>Appointment details</legend>
+       <div class="row g-3">
         <div class="col-md-6">
          <label class="form-label" for="branch">
           Branch *
@@ -189,7 +189,7 @@
         </div>
         <fieldset class="col-12">
          <legend class="form-label">Booking type</legend>
-         <div class="d-flex flex-wrap gap-3">
+         <div class="booking-plans">
           <div class="form-check">
            <input class="form-check-input" id="plan-single" type="radio" name="plan" value="single" checked/>
            <label class="form-check-label" for="plan-single">One-time booking</label>
@@ -201,7 +201,7 @@
          </div>
         </fieldset>
         <div class="col-12">
-         <p class="mb-0">Estimated price <strong id="booking-price" aria-live="polite">Choose a service</strong></p>
+         <p class="booking-estimate">Estimated price <strong id="booking-price" aria-live="polite">Choose a service</strong></p>
          <p class="small text-muted mb-0">Sessions start on the hour and last 40 minutes. Lunch break is from 13:00 to 14:00.</p>
         </div>
         <div class="col-md-6">
@@ -253,14 +253,14 @@
          </button>
         </div>
        </div>
+       </fieldset>
       </form>
       <div aria-live="polite" class="alert alert-success mt-3 hidden" id="booking-confirmation" role="status">
       </div>
-     </div>
-    </div>
-    <div class="col-lg-5">
-     <img alt="Neurology consultation at Shindal" class="img-fluid rounded-4 shadow-sm w-100 mb-4" src="images/Neurology%20consultations.png"/>
-     <div class="card soft-card p-4">
+    </section>
+    <aside class="booking-guide soft-card">
+     <img alt="Neurology consultation at Shindal" src="images/Neurology%20consultations.png"/>
+     <div class="p-4">
       <h2 class="h5">
        What happens next?
       </h2>
@@ -279,7 +279,7 @@
        </li>
       </ol>
      </div>
-    </div>
+    </aside>
    </div>
   </main>
   <section class="cta-band text-white">

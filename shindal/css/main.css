@@ -768,6 +768,83 @@
 @media (max-width:420px) {
     .registration-photo {grid-template-columns:minmax(0,1fr)}
 }
+.booking-layout {
+    --account-inset:clamp(1rem,3vw,1.75rem);
+    display:grid;
+    grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);
+    align-items:start;
+    gap:1.25rem;
+    max-width:66rem;
+    margin:1.5rem auto 3rem
+}
+#booking-form {padding:var(--account-inset)}
+.booking-fields + .booking-fields {margin-top:1.5rem}
+.booking-fields > legend {
+    float:none;
+    padding-bottom:.55rem;
+    margin-bottom:.85rem;
+    border-bottom:1px solid var(--brand-soft);
+    color:var(--bs-primary);
+    font-size:1.15rem;
+    font-weight:650
+}
+#booking-form .form-label {font-size:.9rem;font-weight:600}
+#booking-form :is(.form-control,.form-select):enabled {background-color:#fff}
+#booking-form :is(input,select,textarea):focus-visible {
+    outline:2px solid var(--bs-primary);
+    outline-offset:2px;
+    box-shadow:none
+}
+#booking-form .form-check-input:checked {
+    border-color:var(--bs-primary);
+    background-color:var(--bs-primary)
+}
+.booking-plans {
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem
+}
+.booking-plans .form-check {
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    padding:0 .8rem;
+    margin:0;
+    border:1px solid var(--brand-soft);
+    border-radius:1.5rem
+}
+.booking-plans .form-check:has(:checked) {
+    background:var(--brand-soft);
+    border-color:var(--bs-primary);
+    color:var(--bs-primary)
+}
+.booking-plans .form-check-input {margin:0}
+.booking-plans label {padding:.45rem 0;cursor:pointer}
+.booking-estimate {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:.3rem 1rem;
+    padding:.8rem 1rem;
+    margin-bottom:.5rem;
+    border-radius:.75rem;
+    color:var(--bs-primary);
+    background:var(--bs-body-bg)
+}
+.booking-guide {overflow:hidden}
+.booking-guide img {
+    display:block;
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    object-position:center 55%
+}
+.booking-guide h2 {color:var(--bs-primary)}
+.booking-card > [role="status"] {margin:0 var(--account-inset) var(--account-inset)}
+@media (max-width:991.98px) {
+    .booking-layout {grid-template-columns:1fr;max-width:45rem}
+    .booking-guide img {max-height:16rem}
+}
 .profile-card {max-width:48rem}
 .profile-intro {
     display:flex;
