@@ -8,15 +8,15 @@ $(function () {
   const $cards = $grid.children('.col');
 
   // ---------- filter panel ----------
-  const $panel = jqEl('div', '', 'soft-card p-3 mb-3 row g-3 align-items-end mx-0');
+  const $panel = jqEl('div', '', 'soft-card specialist-filters mb-4');
   const $search = $('<input>').addClass('form-control').attr({id: 'specialist-search', type: 'search', placeholder: 'Name or role'});
   const $service = $('<select>').addClass('form-select').attr('id', 'specialist-service').append($('<option>').val('').text('All services'));
   $.each(SERVICES, function (index, service) { $service.append($('<option>').val(service.id).text(service.name)); });
   const $count = jqEl('p', '', 'mb-0 fw-semibold').attr({id: 'specialist-count', 'aria-live': 'polite'});
   const $reset = jqEl('button', 'Reset', 'btn btn-outline-brand btn-sm').attr('type', 'button');
-  $('<div>').addClass('col-md-4').append($('<label>').addClass('form-label').attr('for', 'specialist-search').text('Search specialists'), $search).appendTo($panel);
-  $('<div>').addClass('col-md-4').append($('<label>').addClass('form-label').attr('for', 'specialist-service').text('Works with service'), $service).appendTo($panel);
-  $('<div>').addClass('col-md-4 d-flex flex-wrap align-items-center gap-3').append($count, $reset).appendTo($panel);
+  $('<div>').append($('<label>').addClass('form-label').attr('for', 'specialist-search').text('Search specialists'), $search).appendTo($panel);
+  $('<div>').append($('<label>').addClass('form-label').attr('for', 'specialist-service').text('Works with service'), $service).appendTo($panel);
+  $('<div>').addClass('specialist-filter-actions').append($count, $reset).appendTo($panel);
   $grid.before($panel);
   const $empty = jqEl('p', 'No specialist matches. Change the search or press “Reset”.', 'text-muted hidden').attr('id', 'specialist-empty').insertAfter($grid);
 
